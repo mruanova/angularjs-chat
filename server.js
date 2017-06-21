@@ -103,15 +103,15 @@ var postsSchema = new mongoose.Schema({
         minlength: 1,
         maxlength: 1000,
     },
-	likes:{ 
-		type: Number, 
+	likes:{
+		type: Number,
 		default: 0,
-		required: true 
+		required: true
 	},
-	dislikes:{ 
-		type: Number, 
+	dislikes:{
+		type: Number,
 		default: 0,
-		required: true 
+		required: true
 	}
 }, { timestamps: true });
 
@@ -157,14 +157,7 @@ var usersController = {
     },
 }
 
-//app.get('/api', users.index);
-//app.post("/api/user", users.new_user);
-    app.post("/api/users", usersController.register);
-    app.post("/api/login", usersController.login);
-    app.post("/api/posts", usersController.addpost);
-    app.get("/api/posts", usersController.home);
-    app.post("/api/comments", usersController.addcomment);
-    app.get("/api/comments", usersController.home);
+app.get('/api', usersController.index);
 
 app.listen(3000, function () {
     console.log("listening on port 3000");
