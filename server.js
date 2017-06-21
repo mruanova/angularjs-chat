@@ -21,7 +21,7 @@ mongoose.connect('mongodb://localhost/discussdb', function (err) {
 });
 
 var usersSchema = new mongoose.Schema({
-	username: {
+    username: {
         type: String,
         required: true,
         unique: true,
@@ -56,7 +56,7 @@ var usersSchema = new mongoose.Schema({
 
 // 1 = Web Fundamentals, 2 = Python, 3 = MEAN, 4 = Ruby on rails, 5 = ASP.Net
 var categoriesSchema = new mongoose.Schema({
-	name: {
+    name: {
         type: String,
         required: true,
         unique: true,
@@ -72,18 +72,18 @@ var topicSchema = new mongoose.Schema({
         ref: 'Users',
         required: true
     },
-	_category: {
+    _category: {
         type: String,
         ref: 'Categories',
         required: true
     },
-	title: {
+    title: {
         type: String,
         required: true,
         minlength: 3,
         maxlength: 50
     },
-	description: {
+    description: {
         type: String,
         required: true,
         minlength: 3,
@@ -97,22 +97,22 @@ var postsSchema = new mongoose.Schema({
         ref: 'Users',
         required: true
     },
-	postText: {
+    postText: {
         type: String,
         required: true,
         minlength: 1,
         maxlength: 1000,
     },
-	likes:{ 
-		type: Number, 
-		default: 0,
-		required: true 
-	},
-	dislikes:{ 
-		type: Number, 
-		default: 0,
-		required: true 
-	}
+    likes: {
+        type: Number,
+        default: 0,
+        required: true
+    },
+    dislikes: {
+        type: Number,
+        default: 0,
+        required: true
+    }
 }, { timestamps: true });
 
 var commentsSchema = new mongoose.Schema({
@@ -134,37 +134,215 @@ var commentsSchema = new mongoose.Schema({
     }
 }, { timestamps: true })
 
+
+userSchema.methods.generateHash = function (password) {
+    return bcrypt.hashSync(password, bcrypt.genSaltSync(8));
+}
+
+userSchema.methods.comparePassword = function (password) {
+    return bcrypt.compareSync(password, this.password);
+}
+
+userSchema.pre('hashSync', function (done) {
+    this.password = this.generateHash(this.password);
+    done();
+})
+
 mongoose.model('Users', usersSchema);
 var UsersModel = mongoose.model('Users');
 
-/*
-mongoose.model(Categories, categoriesSchema);
-mongoose.model(Topics, topicsSchema);
-mongoose.model(Posts, postsSchema);
-mongoose.model(Comments, commentsSchema);
- */
+mongoose.model('Categories', categoriesSchema);
+var CategoriesModel = mongoose.model('Categories');
+
+mongoose.model('Posts', postsSchema);
+var PostsModel = mongoose.model('Posts');
+
+mongoose.model('Comments', commentsSchema);
+var CommentsModel = mongoose.model('Comments');
 
 var usersController = {
-    index: function (req, res) {
-        var promise = UsersModel.find({}).sort({ score: -1 }).exec();
-        promise.then(function (users) {
-            console.log("find all users: success!");
-            res.json({ users: users, errors: [] });
+    login: function (request, response) {
+        var promise = UsersModel.findOne({ email: request.body.email });
+        promise.then(function (user) {
+            if (user) {
+                var validPassword = user.comparePassword(request.body.password);
+                if (validPassword) {
+                    console.log("LOGIN SUCCESS", user.email);
+                    response.json({ user: { id: user._id, username: user.username } });
+                }
+                else {
+                    console.log("INCORRECT PASSWORD", user.email);
+                    response.json({ error: { message: "Incorrect password" } });
+                }
+            }
+            else {
+                console.log("EMAIL NOT FOUND", user.email);
+                response.json({ error: { message: "Email not found, please register" } })
+            }
         }).catch(function (err) {
-            console.log('find all users: error!', err);
-            res.json({ users: [], errors: err });
+            console.log("LOGIN ERROR", err);// if the server fails then log the error in the console
+            response.json({});//  but do not propagate it to the browser
         });
     },
-}
+    create: function (request, response) {
+        var promise = UsersModel.findOne({ email: request.body.email });
+        promise.then(function (user) {
+            if (user) {
+                console.log("EMAIL ALREADY EXISTS", user.email);
+                response.json({ error: { message: "Email already exists, please login" } })
+            }
+            else {
+                var user = new User(request.body);
+                var promise = user.save();
+                promise.then(function (user) {
+                    console.log("USER.SAVE.SUCCESS");
+                    response.json({ message: "Successfully created user", user: user });
+                }).catch(function (err) {
+                    console.log("USER.SAVE.ERROR", err);// if the server fails then log the error in the console
+                    response.json({});// but do not propagate it to the browser
+                });
+            }
+        }).catch(function (err) {
+            console.log("LOGIN ERROR", err);// if the server fails then log the error in the console
+            response.json({});// but do not propagate it to the browser
+        });
+    },
+    show: function (request, response) {
+        var promise = User.findOne({ email: request.body._id });
+        promise.then(function (user) {
+            console.log("USER.show.SUCCESS");
+            response.json({ user: user._id });
+        }).catch(function (err) {
+            console.log("USER.show.ERROR", err);// if the server fails then log the error in the console
+            response.json({});// but do not propagate it to the browser
+        });
+    }
+};
 
-//app.get('/api', users.index);
-//app.post("/api/user", users.new_user);
-    app.post("/api/users", usersController.register);
-    app.post("/api/login", usersController.login);
-    app.post("/api/posts", usersController.addpost);
-    app.get("/api/posts", usersController.home);
-    app.post("/api/comments", usersController.addcomment);
-    app.get("/api/comments", usersController.home);
+var categoriesController = {
+    index: function (request, response) {
+        var promise = CategoriesModel.find({});
+        promise.then(function (categories) {
+            if (categories) {
+                console.log("categories.show", categories.length);
+                response.json({ categories: categories });
+            } else {
+                console.log("categories not found");
+                response.json({});
+            }
+        }).catch(function (err) {
+            console.log("categories.show.ERROR", err);// if the server fails then log the error in the console
+            response.json({});// but do not propagate it to the browser
+        });
+    },
+    create: function (request, response) {
+        var category = new Category(request.body);
+        var promise = category.save();
+        promise.then(function (category) {
+            console.log("category.SAVE.SUCCESS");
+            response.json({ message: "Successfully created category", category: category.name });
+        }).catch(function (err) {
+            console.log("category.SAVE.ERROR", err);// if the server fails then log the error in the console
+            response.json({});// but do not propagate it to the browser
+        });
+    }
+};
+
+var topicsController = {
+    index: function (request, response) {
+        var promise = TopicsModel.find({}).populate("_author _category");
+        promise.then(function (topics) {
+            if (topics) {
+                console.log("topics.find", topics.length);
+                var promise = PostsModel.find({}).populate("_author _topic");
+                promise.then(function (posts) {
+                    if (posts) {
+                        console.log("post.find", posts.length);
+                        var promise = CommentModel.find({}).populate("_author _post");
+                        promise.then(function (comments) {
+                            if (comments) {
+                                console.log("comments.find", comments.length);
+                                response.json({ topics: topics, posts: posts, comments: comments });
+                            } else {
+                                console.log("comments not found");
+                                response.json({});
+                            }
+                        }).catch(function (err) {
+                            console.log("comments.find.ERROR", err);// if the server fails then log the error in the console
+                            response.json({});// but do not propagate it to the browser
+                        });
+                    } else {
+                        console.log("posts not found");
+                    }
+                }).catch(function (err) {
+                    console.log("posts.find.ERROR", err);// if the server fails then log the error in the console
+                    response.json({});// but do not propagate it to the browser
+                });
+            } else {
+                console.log("topics not found");
+                response.json({});
+            }
+        }).catch(function (err) {
+            console.log("topics.find.ERROR", err);// if the server fails then log the error in the console
+            response.json({});// but do not propagate it to the browser
+        });
+    },
+    create: function (request, response) {
+        console.log("topicsController.create");
+        res.json({});
+    }
+};
+
+var postsController = {
+    create: function (request, response) {
+        var post = new PostsModel(request.body);
+        var promise = post.save();
+        promise.then(function (post) {
+            console.log("post.SAVE.SUCCESS");
+            response.json({ message: "Successfully created post", post: post });
+        }).catch(function (err) {
+            console.log("post.SAVE.ERROR", err);// if the server fails then log the error in the console
+            response.json({});// but do not propagate it to the browser
+        });
+    }
+};
+
+var commentsController = {
+    create: function (request, response) {
+        var comment = new CommentsModel(request.body);
+        var promise = comment.save();
+        promise.then(function (comment) {
+            console.log("comment.SAVE.SUCCESS");
+            response.json({ message: "Successfully created comment", comment: comment });
+        }).catch(function (err) {
+            console.log("comment.SAVE.ERROR", err);// if the server fails then log the error in the console
+            response.json({});// but do not propagate it to the browser
+        });
+    }
+};
+
+// login
+app.post("/api/login", usersController.login);
+// register user
+app.post("/api/user", usersController.create);
+// retrieve one / show one / find one
+app.get("/api/user/:id", usersController.show);
+
+// index / find / search / retrieve all / show all
+app.get("/api/categories", categoriesController.index);
+// create
+app.post("/api/category", categoriesController.create);
+
+// index / find / search / retrieve all / show all
+app.get("/api/topics", topicsController.index);
+// create topic
+app.post("/api/topic", topicsController.create);
+
+// create
+app.post("/api/post", postsController.create);
+
+// create
+app.post("/api/comments", commentsController.create);
 
 app.listen(3000, function () {
     console.log("listening on port 3000");
