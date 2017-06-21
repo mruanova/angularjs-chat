@@ -1,0 +1,22 @@
+{
+  "name": "discuss",
+  "description": "",
+  "main": "server.js",
+  "authors": [
+    "Mauricio Ruanova-Hurtado <mruanova@yahoo.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/mruanova/DojoAssignments",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.6.4",
+    "angular-route": "^1.6.4",
+    "bootstrap": "^3.3.7"
+  }
+}

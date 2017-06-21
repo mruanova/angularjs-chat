@@ -1,0 +1,6 @@
+*.pyc
+venv/
+node_modules/
+djangoEnv/
+flaskEnv/
+bower_components/

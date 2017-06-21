@@ -1,0 +1,56 @@
+*{
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+body{
+  text-align: center;
+  background-color:cornflowerblue !important;
+}
+div.scroll{
+  /*
+  width: 300px;
+  height: 350px;
+  overflow: auto;
+  overflow-x: hidden;
+  */
+  border: 1px solid black;
+  background-color: #eee;
+  padding: 5px;
+  display: inline-block;
+}
+div.box {
+  text-align: left;
+  border: 1px solid black;
+  background-color: white;
+  width: 275px;
+  display: inline-block;
+  vertical-align: top;
+  padding: 5px;
+  margin-bottom: 5px;
+}
+img{
+  height: 50px;
+  width: 50px;
+}
+.button{
+  width: 250px;
+  margin-top: 5px;
+  margin-left: 5px;
+}
+label{
+  width: 160px;
+  vertical-align: top;
+}
+.navbar-header{
+  float: left;
+}
+.post{
+  font-weight: bold;
+}
+.timestamp{
+  font-size: 0.75em;
+}
+.red{
+  color:red;
+}

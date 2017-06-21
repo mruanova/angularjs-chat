@@ -1,0 +1,73 @@
+<div class="jumbotron">
+    <h1>Discuss</h1>
+</div>
+<div ng-repeat="error in errors">
+  <ul ng-if="error">
+    <li ng-if="error.errors.password">{{ error.errors.password.message }}</li>
+    <li ng-if="error.errors.email">{{ error.errors.email.message }}</li>
+    <li ng-if="error.login.message">{{ error.login.message }}</li>
+  </ul>
+</div>
+<div class="box">
+  <legend>Login</legend>
+  <form name="loginForm" ng-submit="login()">
+    <label for="email">Email:</label>
+    <input name="email" type="email" ng-model="logindata.email" minlength="8" required ng-pattern="/^[0-9a-zA-Z-_\$#]+@[0-9a-zA-Z-_\$#]+\.[a-zA-Z]{2,5}$/">
+    <span ng-messages="loginForm.email.$error">
+    <span class="red" ng-message="required">*</span>
+    <p class="red" ng-message="minlength">Minimum length = 8.</p>
+    <p class="red" ng-message="pattern">Invalid email address pattern.</p>
+    </span>
+
+    <label for="password">Password:</label>
+    <input name="password" type="password" ng-model="logindata.password" minlength="8" required 
+    ng-pattern="/^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/">
+    <span ng-messages="loginForm.password.$error">
+    <span class="red" ng-message="required">*</span>
+    <p class="red" ng-message="minlength">Minimum length = 8.</p>
+    <p class="red" ng-message="pattern">Invalid password pattern.</p>
+    </span>
+
+    <input class="button" type="submit" value="Login">
+  </form>
+</div>
+<div class="box">
+  <legend>Registration</legend>
+  <form name="registerForm" ng-submit="register()">
+    <label for="username">User Name:</label>
+    <input name="username" type="text" ng-model="registerUser.username" minlength="3" required>
+    <span ng-messages="registerForm.username.$error">
+    <span class="red" ng-message="required">*</span>
+    <p class="red" ng-message="minlength">Minimum length = 3.</p>
+    </span>
+
+    <label for="email">Email:</label>
+    <input name="email" type="email" ng-model="registerUser.email" minlength="8" required 
+    ng-pattern="/^[0-9a-zA-Z-_\$#]+@[0-9a-zA-Z-_\$#]+\.[a-zA-Z]{2,5}$/">
+    <span ng-messages="registerForm.email.$error">
+    <span class="red" ng-message="required">*</span>
+    <p class="red" ng-message="minlength">Minimum length = 3.</p>
+    <p class="red" ng-message="pattern">Invalid email address pattern.</p>
+    </span>
+
+    <label for="password">Password:</label>
+    <input name="password" type="password" ng-model="registerUser.password" minlength="8" 
+    required ng-pattern="/^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/">
+    <span ng-messages="registerForm.password.$error">
+    <span class="red" ng-message="required">*</span>
+    <p class="red" ng-message="minlength">Minimum length = 8.</p>
+    <p class="red" ng-message="pattern">Invalid password pattern.</p>
+    </span>
+
+    <label for="confirm">Confirm Password:</label>
+    <input name="confirm" type="password" ng-model="registerUser.confirm" minlength="8" required 
+    ng-pattern="/^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/">
+    <span ng-messages="registerForm.confirm.$error">
+    <span class="red" ng-message="required">*</span>
+    <p class="red" ng-message="minlength">Minimum length = 8.</p>
+    <p class="red" ng-message="pattern">Invalid password pattern.</p>
+    </span>
+
+    <input class="button" type='submit' value="Register">
+  </form>
+</div>

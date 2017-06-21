@@ -1,0 +1,36 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/#!">Discuss</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse in" aria-expanded="true">
+      <ul class="nav navbar-nav navbar-right">
+        <span>Welcome <span ng-bind="user.username"></span>!
+        <input class="" type="button" value="Sign Out" ng-click="logout()">
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class="box">
+  <form ng-submit="addPost()">
+    <label>Post a message:</label>
+    <textarea rows="3" cols="30" ng-model="newpost.posttext"></textarea>
+    <input class="button" type="submit" value="Post">
+  </form>
+</div>
+<span ng-repeat="post in posts">
+  <div class="box">
+    <p class="timestamp"><span ng-bind="post._author.username"></span>: <span ng-bind="post.createdAt|date:'medium'"></span></p>
+    <p class="post" ng-bind="post.postText"></p>
+    <span ng-repeat="comment in comments">
+      <span ng-if="comment._post._id === post._id">
+          <p class="timestamp"><span ng-bind="comment._author.username"></span>: <span ng-bind="comment.createdAt|date:'medium'"></span></p>
+          <p ng-bind="comment.commentText"></p>
+      </span>
+    </span>
+    <form ng-submit="addComment(post._id, newcomment)">
+      <textarea rows="3" cols="30" ng-model="newcomment.commenttext"></textarea>
+      <input class="button" type="submit" value="Comment">
+    </form>
+  </div>
+</span>
