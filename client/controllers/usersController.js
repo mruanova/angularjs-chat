@@ -26,9 +26,9 @@ app.controller("usersController", function ($scope, $location, userFactory, $coo
 
   var errorCatcher = function(errors){
       console.log("Caught errors:", errors)
-      if (errors.error.email){
-        $scope.errors.emailTaken = errors.error.email.message
-      }
+      // if (errors.error.email){
+      //   $scope.errors.emailTaken = errors.error.email.message
+      // }
       // $scope.errors.emailTaken = null;
       // // console.log("Email isn't taken...")
       // if (errors.error){

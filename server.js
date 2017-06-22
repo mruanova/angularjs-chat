@@ -135,17 +135,14 @@ var commentsSchema = new mongoose.Schema({
 }, { timestamps: true })
 
 
-usersSchema.methods.generateHash = function (password) {
-    return bcrypt.hashSync(password, bcrypt.genSaltSync(8));
-}
-
 usersSchema.methods.comparePassword = function (password) {
     return bcrypt.compareSync(password, this.password);
 }
 
-usersSchema.pre('hashSync', function (done) {
-    this.password = this.generateHash(this.password);
-    done();
+usersSchema.pre('save', function(done){
+  if (!this.isModified('password')){return done()};
+  this.password = bcrypt.hashSync(this.password, bcrypt.genSaltSync(8));
+  done();
 })
 
 mongoose.model('Users', usersSchema);

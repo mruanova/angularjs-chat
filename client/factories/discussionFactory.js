@@ -23,7 +23,7 @@ app.factory("discussionFactory", function ($http) {
     factory.getCategories = function(setCategories){
       $http.get('/api/categories').then(function(response){
         if (response.data.categories){
-          console.log("Received topics: ", response.data.categories);
+          console.log("Received categories: ", response.data.categories);
           factory.categories = response.data.categories;
 
           if (factory.categories.length < 1){
