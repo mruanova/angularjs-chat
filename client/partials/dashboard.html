@@ -5,7 +5,7 @@
     </div>
     <div id="navbar" class="navbar-collapse collapse in" aria-expanded="true">
       <ul class="nav navbar-nav navbar-right">
-        <span>Welcome <span ng-bind="user.username"></span>!
+        <span>Welcome <span ng-bind="currentUser.username"></span>!
         <input class="" type="button" value="Sign Out" ng-click="logout()">
       </ul>
     </div>
@@ -35,7 +35,7 @@
 
 <div class="box">
   <form ng-submit="addTopic()">
-    <h3>Add a new Topic</h3>
+    <legend>Add a new Topic</legend>
 
     <input type="hidden" name="user" ng-model="newTopic._author" value="{{currentUser.id}}">
 
@@ -50,6 +50,7 @@
       <option ng-repeat="category in categories" value="{{category._id}}">{{category.name}}</option>
     </select>
 
+    <label for="button"></label>
     <input type="submit" class="button" value="Submit">
   </form>
 </div>
@@ -59,6 +60,7 @@
   <form ng-submit="addPost()">
     <label>Post a message:</label>
     <textarea rows="3" cols="30" ng-model="newpost.posttext"></textarea>
+    <label for="button"></label>
     <input class="button" type="submit" value="Post">
   </form>
 </div>
