@@ -161,23 +161,23 @@ usersSchema.pre('save', function(done){
 })
 
 mongoose.model('Users', usersSchema);
-var UsersModel = mongoose.model('Users');
+var usersModel = mongoose.model('Users');
 
 mongoose.model('Categories', categoriesSchema);
-var CategoriesModel = mongoose.model('Categories');
+var categoriesModel = mongoose.model('Categories');
 
 mongoose.model('Topics', topicsSchema);
-var TopicsModel = mongoose.model('Topics');
+var topicsModel = mongoose.model('Topics');
 
 mongoose.model('Posts', postsSchema);
-var PostsModel = mongoose.model('Posts');
+var postsModel = mongoose.model('Posts');
 
 mongoose.model('Comments', commentsSchema);
-var CommentsModel = mongoose.model('Comments');
+var commentsModel = mongoose.model('Comments');
 
 var usersController = {
     login: function (request, response) {
-        var promise = UsersModel.findOne({ email: request.body.email });
+        var promise = usersModel.findOne({ email: request.body.email });
         promise.then(function (user) {
             if (user) {
                 var validPassword = user.comparePassword(request.body.password);
@@ -200,14 +200,14 @@ var usersController = {
         });
     },
     create: function (request, response) {
-        var promise = UsersModel.findOne({ email: request.body.email });
+        var promise = usersModel.findOne({ email: request.body.email });
         promise.then(function (user) {
             if (user) {
                 console.log("EMAIL ALREADY EXISTS", user.email);
                 response.json({ error: { email:{ message: "Email already exists, please login" } } })
             }
             else {
-                var user = new UsersModel(request.body);
+                var user = new usersModel(request.body);
                 var promise = user.save();
                 promise.then(function (user) {
                     console.log("USER.SAVE.SUCCESS");
@@ -223,7 +223,7 @@ var usersController = {
         });
     },
     show: function (request, response) {
-        var promise = UsersModel.findOne({ _id: request.params.id });
+        var promise = usersModel.findOne({ _id: request.params.id });
         promise.then(function (user) {
             console.log("USER.show.SUCCESS");
             response.json(user);
@@ -236,7 +236,7 @@ var usersController = {
 
 var categoriesController = {
     index: function (request, response) {
-        var promise = CategoriesModel.find({});
+        var promise = categoriesModel.find({});
         promise.then(function (categories) {
             if (categories) {
                 console.log("categories.show", categories.length);
@@ -251,7 +251,7 @@ var categoriesController = {
         });
     },
     create: function (request, response) {
-        var category = new CategoriesModel(request.body);
+        var category = new categoriesModel(request.body);
         var promise = category.save();
         promise.then(function (category) {
             console.log("category.SAVE.SUCCESS");
@@ -265,15 +265,15 @@ var categoriesController = {
 
 var topicsController = {
     index: function (request, response) {
-        var promise = TopicsModel.find({}).populate("_author _category");
+        var promise = topicsModel.find({}).populate("_author _category");
         promise.then(function (topics) {
             if (topics) {
                 console.log("topics.find", topics.length);
-                var promise = PostsModel.find({}).populate("_author _topic");
+                var promise = postsModel.find({}).populate("_author _topic");
                 promise.then(function (posts) {
                     if (posts) {
                         console.log("post.find", posts.length);
-                        var promise = CommentsModel.find({}).populate("_author _post");
+                        var promise = commentsModel.find({}).populate("_author _post");
                         promise.then(function (comments) {
                             if (comments) {
                                 console.log("comments.find", comments.length);
@@ -306,7 +306,7 @@ var topicsController = {
         console.log("topicsController.create");
         // console.log("REQUEST: ", request)
         console.log(request.body)
-        var topic = new TopicsModel(request.body)
+        var topic = new topicsModel(request.body)
         var promise = topic.save();
         promise.then(function(post){
           console.log("topic.SAVE.SUCCESS");
@@ -319,7 +319,7 @@ var topicsController = {
     },
     show: function(request, response){
       console.log("topicsController.show");
-      var promise = TopicsModel.findOne({_id:request.params.id}).populate("_author posts posts._author posts.comments posts.comments._author");
+      var promise = topicsModel.findOne({_id:request.params.id}).populate("_author posts posts._author posts.comments posts.comments._author");
       promise.then(function(topic){
         console.log("Found topic");
         response.json({topic:topic});
@@ -332,7 +332,7 @@ var topicsController = {
 
 var postsController = {
     create: function (request, response) {
-        var post = new PostsModel(request.body);
+        var post = new postsModel(request.body);
         var promise = post.save();
         promise.then(function (post) {
             console.log("post.SAVE.SUCCESS");
@@ -346,7 +346,7 @@ var postsController = {
 
 var commentsController = {
     create: function (request, response) {
-        var comment = new CommentsModel(request.body);
+        var comment = new commentsModel(request.body);
         var promise = comment.save();
         promise.then(function (comment) {
             console.log("comment.SAVE.SUCCESS");
