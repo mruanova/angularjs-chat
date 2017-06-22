@@ -50,6 +50,7 @@
       <option ng-repeat="category in categories" value="{{category._id}}">{{category.name}}</option>
     </select>
 
+    <label for="button"></label>
     <input type="submit" class="button" value="Submit">
   </form>
 </div>
@@ -59,6 +60,7 @@
   <form ng-submit="addPost()">
     <label>Post a message:</label>
     <textarea rows="3" cols="30" ng-model="newpost.posttext"></textarea>
+    <label for="button"></label>
     <input class="button" type="submit" value="Post">
   </form>
 </div>

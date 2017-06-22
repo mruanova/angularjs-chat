@@ -3,6 +3,9 @@
   .box{
     width: 275px;
   }
+.button{
+  margin-left: 5px;
+}
 }
 /* Medium sized screens */
 @media only screen and (min-width: 481px) {
@@ -13,7 +16,7 @@
 /* Large sized screens */
 @media only screen and (min-width: 1024px) {
   .box{
-    width: 275px;
+    width: 550px;
   }
 }
 *{
@@ -73,6 +76,9 @@ label{
 }
 .red{
   color:red;
+}
+select{
+  width: 245px;
 }
 table{
   width: 100%;
