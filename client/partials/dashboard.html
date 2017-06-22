@@ -6,7 +6,7 @@
     <div id="navbar" class="navbar-collapse collapse in" aria-expanded="true">
       <ul class="nav navbar-nav navbar-right">
         <span>Welcome <span ng-bind="currentUser.username"></span>!
-        <input class="" type="button" value="Sign Out" ng-click="logout()">
+        <input class="signout" type="button" value="Sign Out" ng-click="logout()">
       </ul>
     </div>
   </div>
@@ -14,7 +14,7 @@
 
 <div class="box" id="search-bar">
   <input type="search" name="search" ng-model="searchQuery">
-  <input type="button" class="" value="Search" ng-click="search()">
+  <input type="button" class="button" value="Search" ng-click="search()">
 
 </div>
 

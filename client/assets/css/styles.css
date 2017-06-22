@@ -3,9 +3,6 @@
   .box{
     width: 275px;
   }
-.button{
-  margin-left: 5px;
-}
 }
 /* Medium sized screens */
 @media only screen and (min-width: 481px) {
@@ -55,6 +52,11 @@ img{
 }
 .button{
   width: 250px;
+  margin-top: 5px;
+  margin-left: 5px;
+}
+.signout{
+  width: 210px;
   margin-top: 5px;
   margin-left: 5px;
 }
