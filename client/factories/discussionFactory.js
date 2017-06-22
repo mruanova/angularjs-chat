@@ -29,7 +29,7 @@ app.factory("discussionFactory", function ($http) {
           if (factory.categories.length < 1){
             var categories = ["Web Fundamentals", "Python", "MEAN", "Ruby on Rails", "ASP.NET"];
             for (var x = 0; x < categories.length; x += 1){
-              $http.post('/api/category', {name:categories[x]}).then(function(response){
+              $http.post('/api/categories', {name:categories[x]}).then(function(response){
                 console.log(response);
               })
             }
@@ -45,10 +45,11 @@ app.factory("discussionFactory", function ($http) {
 
 
     factory.showTopic = function (topicId, setTopic) {
-      $http.get("/api/topic/" + topicId).then(function (response) {
+      $http.get("/api/topics/" + topicId).then(function (response) {
         if(response.data.topic){
           console.log("Retrieved topic: ", response.data.topic);
           factory.topic = response.data.topic;
+          console.log(factory.topic);
         } else {
           console.log("Failed to retrieve topic")
           console.log(response.data.errors)
@@ -58,7 +59,7 @@ app.factory("discussionFactory", function ($http) {
     }
 
     factory.addTopic = function(postData, setTopics){
-      $http.post('/api/topic', postData).then(function(response){
+      $http.post('/api/topics', postData).then(function(response){
         console.log(response);
 
         factory.getTopics(setTopics);

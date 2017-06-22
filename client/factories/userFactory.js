@@ -1,11 +1,23 @@
-app.factory("userFactory", function ($http) {
-
+app.factory("userFactory", function ($http, $cookies) {
+    console.log("Entered user factory")
     var factory = {};
 
     factory.currentUser = null;
 
+    var checkCookies = function(){
+      console.log("Checking cookies")
+      console.log($cookies.get('currentUserId'))
+      console.log($cookies.get('currentUserUsername'))
+      if ($cookies.get('currentUserUsername')){
+        console.log("Found cookie")
+        factory.currentUser = {id:$cookies.get('currentUserId'), username: $cookies.get('currentUserUsername')}
+      }
+    }
+
+    checkCookies();
+
     factory.register = function (user, setCookies, catchErrors) {
-      $http.post('/api/user', user).then(function (response) {
+      $http.post('/api/users', user).then(function (response) {
         if (response.data.user) {
           factory.currentUser = {
             id: response.data.user._id,
@@ -25,9 +37,10 @@ app.factory("userFactory", function ($http) {
       $http.post('/api/login', user).then(function (response) {
         if (response.data.user) {
           factory.currentUser = {
-            id: response.data.user._id,
+            id: response.data.user.id,
             username: response.data.user.username
           }
+          console.log(factory.currentUser)
         }
         else {
           console.log("factory.login.error")

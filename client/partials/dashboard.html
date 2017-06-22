@@ -27,8 +27,8 @@
   </tr>
   <tr ng-repeat="topic in topics">
     <td>{{topic._category.name}}</td>
-    <td><a href="/topics/{{topic._id}}">{{topic.title}}</a></td>
-    <td><a href="/user/{{topic._user._id}}">{{topic._user.username}}</a></td>
+    <td><a href="#!/topics/{{topic._id}}">{{topic.title}}</a></td>
+    <td><a href="#!/user/{{topic._user._id}}">{{topic._author.username}}</a></td>
     <td>{{topic.posts.length}}</td>
   </tr>
 </table>
@@ -54,8 +54,9 @@
     <input type="submit" class="button" value="Submit">
   </form>
 </div>
+<!-- <button ng-click="printCookies()">Test Cookies</button> -->
 
-
+<!--
 <div class="box">
   <form ng-submit="addPost()">
     <label>Post a message:</label>
@@ -82,4 +83,4 @@
       <input class="button" type="submit" value="Comment">
     </form>
   </div>
-</span>
+</span> -->

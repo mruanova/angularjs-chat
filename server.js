@@ -64,18 +64,22 @@ var categoriesSchema = new mongoose.Schema({
         unique: true,
         minlength: 3,
         maxlength: 20
-    }
+    },
+    topics:[{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Topics',
+    }]
 }, { timestamps: true });
 
 // html5, css3, git, heroku, aws; mysql, sqlite, apache, django, flask, jinja; mongodb, express, angularjs, nodejs; ruby, rails; c#, visual basic, sqlserver.
 var topicsSchema = new mongoose.Schema({
     _author: {
-        type: String,
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'Users',
         required: true
     },
     _category: {
-        type: String,
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'Categories',
         required: true
     },
@@ -90,21 +94,22 @@ var topicsSchema = new mongoose.Schema({
         required: true,
         minlength: 3,
         maxlength: 140
-    }
+    },
+    posts:[{type:mongoose.Schema.Types.ObjectId, ref:'Posts'}]
 }, { timestamps: true });
 
 var postsSchema = new mongoose.Schema({
-    _author: {
-        type: String,
-        ref: 'Users',
-        required: true
-    },
-    postText: {
-        type: String,
-        required: true,
-        minlength: 1,
-        maxlength: 1000,
-    },
+  _author: {
+      type: String,
+      ref: 'Users',
+      required: true
+  },
+  postText: {
+      type: String,
+      required: true,
+      minlength: 1,
+      maxlength: 1000,
+  },
 	likes:{
 		type: Number,
 		default: 0,
@@ -114,17 +119,25 @@ var postsSchema = new mongoose.Schema({
 		type: Number,
 		default: 0,
 		required: true
-	}
+	},
+  _topic:{
+    type:mongoose.Schema.Types.ObjectId,
+    ref:"Topics"
+  },
+  comments:[{
+    type:mongoose.Schema.Types.ObjectId,
+    ref:"Comments"
+  }]
 }, { timestamps: true });
 
 var commentsSchema = new mongoose.Schema({
     _author: {
-        type: String,
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'Users',
         required: true
     },
     _post: {
-        type: String,
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'Posts',
         required: true
     },
@@ -198,7 +211,7 @@ var usersController = {
                 var promise = user.save();
                 promise.then(function (user) {
                     console.log("USER.SAVE.SUCCESS");
-                    response.json({ message: "Successfully created user", user: user });
+                    response.json({ user: user });
                 }).catch(function (err) {
                     console.log("USER.SAVE.ERROR", err);// if the server fails then log the error in the console
                     response.json({});// but do not propagate it to the browser
@@ -242,7 +255,7 @@ var categoriesController = {
         var promise = category.save();
         promise.then(function (category) {
             console.log("category.SAVE.SUCCESS");
-            response.json({ message: "Successfully created category", category: category.name });
+            response.json({category: category});
         }).catch(function (err) {
             console.log("category.SAVE.ERROR", err);// if the server fails then log the error in the console
             response.json({});// but do not propagate it to the browser
@@ -297,12 +310,23 @@ var topicsController = {
         var promise = topic.save();
         promise.then(function(post){
           console.log("topic.SAVE.SUCCESS");
-          response.json({message:"Successfully created topic", topic:topic})
+          response.json({topic:topic})
         }).catch(function(err){
           console.log("topic.SAVE.ERROR", err);
           response.json({});
         })
 
+    },
+    show: function(request, response){
+      console.log("topicsController.show");
+      var promise = TopicsModel.findOne({_id:request.params.id}).populate("_author posts posts._author posts.comments posts.comments._author");
+      promise.then(function(topic){
+        console.log("Found topic");
+        response.json({topic:topic});
+      }).catch(function(err){
+        console.log("topic.show.ERROR", err);
+        response.json({});
+      })
     }
 };
 
@@ -337,22 +361,26 @@ var commentsController = {
 // login
 app.post("/api/login", usersController.login);
 // register user
-app.post("/api/user", usersController.create);
+app.post("/api/users", usersController.create);
 // retrieve one / show one / find one
-app.get("/api/user/:id", usersController.show);
+app.get("/api/users/:id", usersController.show);
 
 // index / find / search / retrieve all / show all
 app.get("/api/categories", categoriesController.index);
 // create
-app.post("/api/category", categoriesController.create);
+app.post("/api/categories", categoriesController.create);
 
+
+app.get('/api/topics/:id', topicsController.show);
 // index / find / search / retrieve all / show all
 app.get("/api/topics", topicsController.index);
 // create topic
-app.post("/api/topic", topicsController.create);
+app.post("/api/topics", topicsController.create);
+
+
 
 // create
-app.post("/api/post", postsController.create);
+app.post("/api/posts", postsController.create);
 
 // create
 app.post("/api/comments", commentsController.create);

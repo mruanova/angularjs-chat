@@ -1,4 +1,4 @@
-app.controller("discussionController", function ($scope, $location, userFactory, discussionFactory, $cookies, $route) {
+app.controller("discussionController", function ($scope, $location, userFactory, discussionFactory, $cookies, $routeParams) {
   $scope.user = {};
   //TODO: $scope.errors
 
@@ -17,6 +17,11 @@ app.controller("discussionController", function ($scope, $location, userFactory,
 
   $scope.logout = function () {
     userFactory.logout(checkCurrentUser);
+  }
+
+  $scope.printCookies = function(){
+    console.log($cookies.get('currentUserId'))
+    console.log($cookies.get('currentUserUsername'))
   }
 
 
@@ -46,6 +51,13 @@ app.controller("discussionController", function ($scope, $location, userFactory,
   }
 
   if ($location.url().match('^/topics/')){
+
+    var setTopic = function(topic){
+      $scope.topic = topic
+    }
+
+    discussionFactory.showTopic($routeParams.topicId, setTopic);
+
     $scope.addPost = function () {
       var newpostdata = { postText: $scope.newpost.posttext, _author: $scope.user.id };
       discussionFactory.addNewPost(newpostdata, function () {

@@ -1,0 +1,36 @@
+<div class="box">
+  <h3><a href="#!/user/{{topic._author._id}}">{{topic._author.username}}</a> posted a topic:</h3>
+  <h5>{{topic.title}}</h5>
+  <p>Description: {{topic.description}}</p>
+</div>
+<div class="box">
+  <form ng-submit="addPost(currentUser.id)">
+    <label>Post your answer here...</label>
+    <textarea name="name" rows="3" cols="30" ng-model="newPost.postText"></textarea>
+    <input type="submit" class="button" name="" value="Post">
+  </form>
+  <hr>
+</div>
+
+<div class="post box" ng-repeat="post in topic.posts">
+  <p>
+    <a href="#!/user/{{post._author._id}}">{{post._author.username}}:</a>
+    {{post.postText}}
+  </p>
+  <span>{{post.likes}}</span>
+  <button type="button" class="button" name="like" ng-click="vote('like')">Like</button>
+  <span>{{post.dislikes}}</span>
+  <button type="button" class="button" name="button" ng-click="vote('dislike')">Dislike</button>
+
+  <p ng-repeat="comment in post.comments">
+    <a href="#!/user/{{comment._author._id}}">{{comment._author.username}}:</a>
+    {{comment.commentText}}
+  </p>
+
+  <form ng-submit="addComent(post._id, currentUser.id)">
+    <textarea name="commentText" rows="3" cols="30"></textarea>
+    <input type="submit" class="button" name="" value="Comment">
+  </form>
+
+
+</div>

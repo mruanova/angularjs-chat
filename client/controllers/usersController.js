@@ -7,6 +7,7 @@ app.controller("usersController", function ($scope, $location, userFactory, $coo
 
   var updateCookies = function(redirect = null){
     if (userFactory.currentUser){
+      // console.log()
       $cookies.put('currentUserId', userFactory.currentUser.id);
       $cookies.put('currentUserUsername', userFactory.currentUser.username)
       $scope.currentUser = {}
@@ -17,6 +18,12 @@ app.controller("usersController", function ($scope, $location, userFactory, $coo
       $scope.currentUser = null;
       $cookies.remove('currentUserId');
       $cookies.remove('currentUserUsername')
+      // $cookies.put('currentUserId', userFactory.currentUser.id);
+      // $cookies.put('currentUserUsername', userFactory.currentUser.username)
+      // $scope.currentUser = {}
+      // $scope.currentUser.id = $cookies.get('currentUserId')
+      // $scope.currentUser.username = $cookies.get('currentUserUsername')
+      // userFactory.currentUser = $scope.currentUser
     }
     if(redirect){
       $location.url(redirect)
@@ -64,7 +71,7 @@ app.controller("usersController", function ($scope, $location, userFactory, $coo
   }
 
   if ($location.url() == '/login'){
-    updateCookies();
+    // updateCookies();
     console.log("Viewing login page")
     $scope.login = function () {
       userFactory.login($scope.logindata, updateCookies, errorCatcher)
