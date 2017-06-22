@@ -22,11 +22,27 @@ app.controller("discussionController", function ($scope, $location, userFactory,
 
 
   if ($location.url() == '/dashboard'){
+
+    checkCurrentUser()
+
     var setTopics = function(topics){
       $scope.topics = topics
     }
 
+    var setCategories = function(categories){
+      $scope.categories = categories
+      console.log(categories)
+    }
+
     discussionFactory.getTopics(setTopics)
+    discussionFactory.getCategories(setCategories)
+
+
+    $scope.addTopic = function(userId){
+      console.log("NEW TOPIC: ", $scope.newTopic)
+      discussionFactory.addTopic(userId, $scope.newTopic, setTopics)
+    }
+
   }
 
   if ($location.url().match('^/topics/')){

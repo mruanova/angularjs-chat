@@ -24,7 +24,7 @@ var usersSchema = new mongoose.Schema({
     username: {
         type: String,
         required: true,
-        unique: true,
+        unique: [true, "Email is already registered"],
         minlength: 3,
         maxlength: 20
     },
@@ -66,7 +66,7 @@ var categoriesSchema = new mongoose.Schema({
 }, { timestamps: true });
 
 // html5, css3, git, heroku, aws; mysql, sqlite, apache, django, flask, jinja; mongodb, express, angularjs, nodejs; ruby, rails; c#, visual basic, sqlserver.
-var topicSchema = new mongoose.Schema({
+var topicsSchema = new mongoose.Schema({
     _author: {
         type: String,
         ref: 'Users',
@@ -135,15 +135,15 @@ var commentsSchema = new mongoose.Schema({
 }, { timestamps: true })
 
 
-userSchema.methods.generateHash = function (password) {
+usersSchema.methods.generateHash = function (password) {
     return bcrypt.hashSync(password, bcrypt.genSaltSync(8));
 }
 
-userSchema.methods.comparePassword = function (password) {
+usersSchema.methods.comparePassword = function (password) {
     return bcrypt.compareSync(password, this.password);
 }
 
-userSchema.pre('hashSync', function (done) {
+usersSchema.pre('hashSync', function (done) {
     this.password = this.generateHash(this.password);
     done();
 })
@@ -153,6 +153,9 @@ var UsersModel = mongoose.model('Users');
 
 mongoose.model('Categories', categoriesSchema);
 var CategoriesModel = mongoose.model('Categories');
+
+mongoose.model('Topics', topicsSchema);
+var TopicsModel = mongoose.model('Topics');
 
 mongoose.model('Posts', postsSchema);
 var PostsModel = mongoose.model('Posts');
@@ -189,10 +192,10 @@ var usersController = {
         promise.then(function (user) {
             if (user) {
                 console.log("EMAIL ALREADY EXISTS", user.email);
-                response.json({ error: { message: "Email already exists, please login" } })
+                response.json({ error: { email:{ message: "Email already exists, please login" } } })
             }
             else {
-                var user = new User(request.body);
+                var user = new UsersModel(request.body);
                 var promise = user.save();
                 promise.then(function (user) {
                     console.log("USER.SAVE.SUCCESS");
@@ -208,7 +211,7 @@ var usersController = {
         });
     },
     show: function (request, response) {
-        var promise = User.findOne({ email: request.body._id });
+        var promise = UsersModel.findOne({ email: request.body._id });
         promise.then(function (user) {
             console.log("USER.show.SUCCESS");
             response.json({ user: user._id });
@@ -236,7 +239,7 @@ var categoriesController = {
         });
     },
     create: function (request, response) {
-        var category = new Category(request.body);
+        var category = new CategoriesModel(request.body);
         var promise = category.save();
         promise.then(function (category) {
             console.log("category.SAVE.SUCCESS");
@@ -258,7 +261,7 @@ var topicsController = {
                 promise.then(function (posts) {
                     if (posts) {
                         console.log("post.find", posts.length);
-                        var promise = CommentModel.find({}).populate("_author _post");
+                        var promise = CommentsModel.find({}).populate("_author _post");
                         promise.then(function (comments) {
                             if (comments) {
                                 console.log("comments.find", comments.length);

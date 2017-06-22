@@ -26,30 +26,28 @@ app.controller("usersController", function ($scope, $location, userFactory, $coo
 
   var errorCatcher = function(errors){
       console.log("Caught errors:", errors)
-      if (errors.code && errors.code == 11000){
-        console.log(errors.code)
-        $scope.errors.emailTaken = true;
-      } else {
-        $scope.errors.emailTaken = null;
-        // console.log("Email isn't taken...")
-        if (errors.errors){
-          if (errors.errors.email){
-            $scope.errors.email = errors.errors.email.message
-          }
-          if (errors.errors.first_name){
-            $scope.errors.first_name = errors.errors.first_name.message
-          }
-          if (errors.errors.last_name){
-            $scope.errors.last_name = errors.errors.last_name.message
-          }
-          if (errors.errors.password){
-            $scope.errors.password = errors.errors.password.message
-          }
-          if (errors.errors.birthday){
-            $scope.errors.birthday = errors.errors.birthday.message
-          }
-        }
+      if (errors.error.email){
+        $scope.errors.emailTaken = errors.error.email.message
       }
+      // $scope.errors.emailTaken = null;
+      // // console.log("Email isn't taken...")
+      // if (errors.error){
+      //   if (errors.error.email){
+      //     $scope.errors.email = errors.errors.email.message
+      //   }
+      //   if (errors.errors.first_name){
+      //     $scope.errors.first_name = errors.errors.first_name.message
+      //   }
+      //   if (errors.errors.last_name){
+      //     $scope.errors.last_name = errors.errors.last_name.message
+      //   }
+      //   if (errors.errors.password){
+      //     $scope.errors.password = errors.errors.password.message
+      //   }
+      //   if (errors.errors.birthday){
+      //     $scope.errors.birthday = errors.errors.birthday.message
+      //   }
+      // }
     }
 
   if ($location.url() == '/register'){

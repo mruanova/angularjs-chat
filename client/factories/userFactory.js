@@ -5,7 +5,7 @@ app.factory("userFactory", function ($http) {
     factory.currentUser = null;
 
     factory.register = function (user, setCookies, catchErrors) {
-      $http.post('/api/users', user).then(function (response) {
+      $http.post('/api/user', user).then(function (response) {
         if (response.data.user) {
           factory.currentUser = {
             id: response.data.user._id,
@@ -14,10 +14,10 @@ app.factory("userFactory", function ($http) {
         }
         else {
           console.log("factory.register.error")
-          console.log(response.data.errors)
-          catchErrors(response.data.errors)
+          console.log(response.data)
+          catchErrors(response.data)
         }
-        setCookies();
+        setCookies('/dashboard');
       });
     }
 
@@ -31,10 +31,10 @@ app.factory("userFactory", function ($http) {
         }
         else {
           console.log("factory.login.error")
-          console.log(response.data.errors)
-          catchErrors(response.data.errors)
+          console.log(response.data)
+          catchErrors(response.data)
         }
-        setCookies();
+        setCookies('/dashboard');
       });
     }
 
@@ -45,7 +45,7 @@ app.factory("userFactory", function ($http) {
     }
 
     factory.show = function(userId, setUser, catchErrors=null){
-      $http.get('/users/' + userId, function(response){
+      $http.get('/user/' + userId, function(response){
         if (response.data.user){
           console.log("Got user: ", response.data.user)
           setUser(response.data.user)

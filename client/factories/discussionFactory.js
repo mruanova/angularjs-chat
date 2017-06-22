@@ -3,19 +3,43 @@ app.factory("discussionFactory", function ($http) {
     var factory = {};
 
     factory.topics = [];
+    factory.categories = [];
 
     factory.topic = {};
 
     factory.getTopics = function(setTopics){
       $http.get('/api/topics').then(function(response){
         if (response.data.topics){
-          console.log("Received topics: ", reponse.data.topics);
+          console.log("Received topics: ", response.data.topics);
           factory.topics = response.data.topics
         } else {
           console.log("Failed to retrieve topics")
           console.log(response.data.errors)
         }
         setTopics(factory.topics)
+      })
+    }
+
+    factory.getCategories = function(setCategories){
+      $http.get('/api/categories').then(function(response){
+        if (response.data.categories){
+          console.log("Received topics: ", response.data.categories);
+          factory.categories = response.data.categories;
+
+          if (factory.categories.length < 1){
+            var categories = ["Web Fundamentals", "Python", "MEAN", "Ruby on Rails", "ASP.NET"];
+            for (var x = 0; x < categories.length; x += 1){
+              $http.post('/api/category', {name:categories[x]}).then(function(response){
+                console.log(response);
+              })
+            }
+          }
+
+        } else {
+          console.log("Failed to retrieve categories")
+          console.log(response.data.errors)
+        }
+        setCategories(factory.categories)
       })
     }
 
@@ -33,6 +57,14 @@ app.factory("discussionFactory", function ($http) {
       });
     }
 
+    factory.addTopic = function(postData, setTopics){
+      $http.post('/api/topic', postData).then(function(response){
+        console.log(response);
+
+        factory.getTopics(setTopics);
+
+      })
+    }
 
     factory.addNewPost = function (postdata, finishedAddingPost) {
       $http.post('/api/posts', postdata).then(function (response) {

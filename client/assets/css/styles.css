@@ -38,6 +38,9 @@ img{
   margin-top: 5px;
   margin-left: 5px;
 }
+input{
+  width: 245px;
+}
 label{
   width: 160px;
   vertical-align: top;

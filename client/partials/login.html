@@ -13,7 +13,7 @@
   <legend>Login | <a href="#!/register" ng-class="{selected: !login}">Register</a></legend>
   <form name="loginForm" ng-submit="login()">
     <label for="email">Email:</label>
-    <input name="email" type="email" ng-model="logindata.email" minlength="8" required ng-pattern="/^[0-9a-zA-Z-_\$#]+@[0-9a-zA-Z-_\$#]+\.[a-zA-Z]{2,5}$/">
+    <input name="email" type="email" ng-model="logindata.email" minlength="8" required ng-pattern="/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/">
     <span ng-messages="loginForm.email.$error">
     <span class="red" ng-message="required">*</span>
     <p class="red" ng-message="minlength">Minimum length = 8.</p>
