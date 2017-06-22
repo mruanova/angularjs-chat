@@ -6,7 +6,7 @@
 <div class="box">
   <form ng-submit="addPost(currentUser.id, topic._id)">
     <label>Post your answer here...</label>
-    <textarea name="name" rows="3" cols="30" ng-model="newPost.postText"></textarea>
+    <textarea name="name" class="text-box" ng-model="newPost.postText"></textarea>
     <input type="submit" class="button" name="" value="Post">
   </form>
   <hr>
@@ -28,7 +28,7 @@
   </p>
 
   <form ng-submit="addComent(post._id, currentUser.id)">
-    <textarea name="commentText" rows="3" cols="30"></textarea>
+    <textarea class="text-box" name="commentText"></textarea>
     <input type="submit" class="button" name="" value="Comment">
   </form>
 

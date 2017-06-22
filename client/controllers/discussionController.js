@@ -44,8 +44,9 @@ app.controller("discussionController", function ($scope, $location, userFactory,
 
 
     $scope.addTopic = function(userId){
+      $scope.newTopic._author = userId
       console.log("NEW TOPIC: ", $scope.newTopic)
-      discussionFactory.addTopic(userId, $scope.newTopic, setTopics)
+      discussionFactory.addTopic($scope.newTopic, setTopics)
     }
 
   }

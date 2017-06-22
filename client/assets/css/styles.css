@@ -82,6 +82,9 @@ label{
 select{
   width: 245px;
 }
+textarea{
+  width: 250px;
+}
 table{
   width: 100%;
   background-color: #eee;
