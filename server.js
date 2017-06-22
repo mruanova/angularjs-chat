@@ -65,9 +65,9 @@ var categoriesSchema = new mongoose.Schema({
         minlength: 3,
         maxlength: 20
     },
-    topics:[{
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Topics',
+    topics: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Topics',
     }]
 }, { timestamps: true });
 
@@ -95,40 +95,40 @@ var topicsSchema = new mongoose.Schema({
         minlength: 3,
         maxlength: 140
     },
-    posts:[{type:mongoose.Schema.Types.ObjectId, ref:'Posts'}]
+    posts: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Posts' }]
 }, { timestamps: true });
 
 var postsSchema = new mongoose.Schema({
-  _author: {
-      type: String,
-      ref: 'Users',
-      required: true
-  },
-  postText: {
-      type: String,
-      required: true,
-      minlength: 1,
-      maxlength: 1000,
-  },
-	likes:{
-		type: Number,
-		default: 0,
-		required: true
-	},
-	dislikes:{
-		type: Number,
-		default: 0,
-		required: true
-	},
-  _topic:{
-    type:mongoose.Schema.Types.ObjectId,
-    ref:"Topics",
-    required: true
-  },
-  comments:[{
-    type:mongoose.Schema.Types.ObjectId,
-    ref:"Comments"
-  }]
+    _author: {
+        type: String,
+        ref: 'Users',
+        required: true
+    },
+    postText: {
+        type: String,
+        required: true,
+        minlength: 1,
+        maxlength: 1000,
+    },
+    likes: {
+        type: Number,
+        default: 0,
+        required: true
+    },
+    dislikes: {
+        type: Number,
+        default: 0,
+        required: true
+    },
+    _topic: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Topics",
+        required: true
+    },
+    comments: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Comments"
+    }]
 }, { timestamps: true });
 
 var commentsSchema = new mongoose.Schema({
@@ -155,10 +155,10 @@ usersSchema.methods.comparePassword = function (password) {
     return bcrypt.compareSync(password, this.password);
 }
 
-usersSchema.pre('save', function(done){
-  if (!this.isModified('password')){return done()};
-  this.password = bcrypt.hashSync(this.password, bcrypt.genSaltSync(8));
-  done();
+usersSchema.pre('save', function (done) {
+    if (!this.isModified('password')) { return done() };
+    this.password = bcrypt.hashSync(this.password, bcrypt.genSaltSync(8));
+    done();
 })
 
 mongoose.model('Users', usersSchema);
@@ -205,7 +205,7 @@ var usersController = {
         promise.then(function (user) {
             if (user) {
                 console.log("EMAIL ALREADY EXISTS", user.email);
-                response.json({ error: { email:{ message: "Email already exists, please login" } } })
+                response.json({ error: { email: { message: "Email already exists, please login" } } })
             }
             else {
                 var user = new usersModel(request.body);
@@ -256,7 +256,7 @@ var categoriesController = {
         var promise = category.save();
         promise.then(function (category) {
             console.log("category.SAVE.SUCCESS");
-            response.json({category: category});
+            response.json({ category: category });
         }).catch(function (err) {
             console.log("category.SAVE.ERROR", err);// if the server fails then log the error in the console
             response.json({});// but do not propagate it to the browser
@@ -309,54 +309,54 @@ var topicsController = {
         console.log(request.body)
         var topic = new topicsModel(request.body)
         var promise = topic.save();
-        promise.then(function(post){
-          console.log("topic.SAVE.SUCCESS");
-          response.json({topic:topic})
-        }).catch(function(err){
-          console.log("topic.create.SAVE.ERROR", err);
-          response.json({});
+        promise.then(function (post) {
+            console.log("topic.SAVE.SUCCESS");
+            response.json({ topic: topic })
+        }).catch(function (err) {
+            console.log("topic.create.SAVE.ERROR", err);
+            response.json({});
         })
 
     },
-    show: function(request, response){
-      console.log("topicsController.show");
-      var promise = topicsModel.findOne({_id:request.params.id}).populate("_author posts posts._author posts.comments posts.comments._author");
-      promise.then(function(topic){
-        console.log("Found topic");
-        response.json({topic:topic});
-      }).catch(function(err){
-        console.log("topic.show.ERROR", err);
-        response.json({});
-      })
+    show: function (request, response) {
+        console.log("topicsController.show");
+        var promise = topicsModel.findOne({ _id: request.params.id }).populate("_author posts posts._author posts.comments posts.comments._author");
+        promise.then(function (topic) {
+            console.log("Found topic");
+            response.json({ topic: topic });
+        }).catch(function (err) {
+            console.log("topic.show.ERROR", err);
+            response.json({});
+        })
     }
 };
 
 var postsController = {
     create: function (request, response) {
-      console.log(request.body);
-        var promise = topicsModel.findOne({_id:request.params.id})
-        promise.then(function(topic){
-          console.log("Found topic:", topic)
-          var newPost = new postsModel(request.body);
-          var promise = newPost.save();
-          promise.then(function(post){
-            console.log("Saved new post, pushing into topic.posts")
-            topic.posts.push(post);
-            var promise = topic.save();
-            promise.then(function(topic){
-              console.log("Saved topic", topic)
-              response.json({topic:topic});
-            }).catch(function(err){
-              console.log("post.topic.save.ERROR", err);
-              response.json({})
+        console.log(request.body);
+        var promise = topicsModel.findOne({ _id: request.params.id })
+        promise.then(function (topic) {
+            console.log("Found topic:", topic)
+            var newPost = new postsModel(request.body);
+            var promise = newPost.save();
+            promise.then(function (post) {
+                console.log("Saved new post, pushing into topic.posts")
+                topic.posts.push(post);
+                var promise = topic.save();
+                promise.then(function (topic) {
+                    console.log("Saved topic", topic)
+                    response.json({ topic: topic });
+                }).catch(function (err) {
+                    console.log("post.topic.save.ERROR", err);
+                    response.json({})
+                })
+            }).catch(function (err) {
+                console.log("post.save.ERROR", err);
+                response.json({})
             })
-          }).catch(function(err){
-            console.log("post.save.ERROR", err);
+        }).catch(function (err) {
+            console.log("topic.find.ERROR", err);
             response.json({})
-          })
-        }).catch(function(err){
-          console.log("topic.find.ERROR", err);
-          response.json({})
         })
 
         //

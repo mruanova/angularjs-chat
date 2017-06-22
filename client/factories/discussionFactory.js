@@ -11,12 +11,12 @@ app.factory("discussionFactory", function ($http) {
       $http.get('/api/topics').then(function(response){
         if (response.data.topics){
           console.log("Received topics: ", response.data.topics);
-          factory.topics = response.data.topics
+          factory.topics = response.data.topics;
         } else {
-          console.log("Failed to retrieve topics")
-          console.log(response.data.errors)
+          console.log("Failed to retrieve topics");
+          console.log(response.data.errors);
         }
-        setTopics(factory.topics)
+        setTopics(factory.topics);
       })
     }
 
