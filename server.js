@@ -7,7 +7,9 @@ var bcrypt = require("bcryptjs");
 var regex_email = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 var regex_password = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,32}/;
 
-app.use(bodyParser.json());
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json())
 app.use(express.static(path.join(__dirname, "./client"))); // index.html
 app.use(express.static(path.join(__dirname, "./bower_components")));
 
@@ -208,10 +210,10 @@ var usersController = {
         });
     },
     show: function (request, response) {
-        var promise = UsersModel.findOne({ email: request.body._id });
+        var promise = UsersModel.findOne({ _id: request.params.id });
         promise.then(function (user) {
             console.log("USER.show.SUCCESS");
-            response.json({ user: user._id });
+            response.json(user);
         }).catch(function (err) {
             console.log("USER.show.ERROR", err);// if the server fails then log the error in the console
             response.json({});// but do not propagate it to the browser
@@ -289,7 +291,18 @@ var topicsController = {
     },
     create: function (request, response) {
         console.log("topicsController.create");
-        res.json({});
+        // console.log("REQUEST: ", request)
+        console.log(request.body)
+        var topic = new TopicsModel(request.body)
+        var promise = topic.save();
+        promise.then(function(post){
+          console.log("topic.SAVE.SUCCESS");
+          response.json({message:"Successfully created topic", topic:topic})
+        }).catch(function(err){
+          console.log("topic.SAVE.ERROR", err);
+          response.json({});
+        })
+
     }
 };
 
