@@ -52,18 +52,19 @@ app.controller("discussionController", function ($scope, $location, userFactory,
 
   if ($location.url().match('^/topics/')){
 
+    checkCurrentUser()
+
     var setTopic = function(topic){
       $scope.topic = topic
     }
 
     discussionFactory.showTopic($routeParams.topicId, setTopic);
 
-    $scope.addPost = function () {
-      var newpostdata = { postText: $scope.newpost.posttext, _author: $scope.user.id };
-      discussionFactory.addNewPost(newpostdata, function () {
-          $scope.newpost = {};
-      })
-      $route.reload();
+    $scope.addPost = function (userId, topicId) {
+      var newPost = { postText: $scope.newPost.postText, _author: userId, _topic:topicId};
+
+      discussionFactory.addNewPost(topicId, newPost, setTopic);
+      // $route.reload();
     }
     $scope.addComment = function (postidfrompage, newcomment) {
         var newcommentdata = {
@@ -74,7 +75,7 @@ app.controller("discussionController", function ($scope, $location, userFactory,
         commentFactory.addNewComment(newcommentdata, function () {
             $scope.newcomment = {};
         })
-        $route.reload();
+        // $route.reload();
     }
   }
 

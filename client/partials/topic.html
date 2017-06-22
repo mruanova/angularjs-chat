@@ -4,7 +4,7 @@
   <p>Description: {{topic.description}}</p>
 </div>
 <div class="box">
-  <form ng-submit="addPost(currentUser.id)">
+  <form ng-submit="addPost(currentUser.id, topic._id)">
     <label>Post your answer here...</label>
     <textarea name="name" rows="3" cols="30" ng-model="newPost.postText"></textarea>
     <input type="submit" class="button" name="" value="Post">

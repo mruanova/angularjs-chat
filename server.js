@@ -122,7 +122,8 @@ var postsSchema = new mongoose.Schema({
 	},
   _topic:{
     type:mongoose.Schema.Types.ObjectId,
-    ref:"Topics"
+    ref:"Topics",
+    required: true
   },
   comments:[{
     type:mongoose.Schema.Types.ObjectId,
@@ -312,7 +313,7 @@ var topicsController = {
           console.log("topic.SAVE.SUCCESS");
           response.json({topic:topic})
         }).catch(function(err){
-          console.log("topic.SAVE.ERROR", err);
+          console.log("topic.create.SAVE.ERROR", err);
           response.json({});
         })
 
@@ -332,15 +333,42 @@ var topicsController = {
 
 var postsController = {
     create: function (request, response) {
-        var post = new postsModel(request.body);
-        var promise = post.save();
-        promise.then(function (post) {
-            console.log("post.SAVE.SUCCESS");
-            response.json({ message: "Successfully created post", post: post });
-        }).catch(function (err) {
-            console.log("post.SAVE.ERROR", err);// if the server fails then log the error in the console
-            response.json({});// but do not propagate it to the browser
-        });
+      console.log(request.body);
+        var promise = topicsModel.findOne({_id:request.params.id})
+        promise.then(function(topic){
+          console.log("Found topic:", topic)
+          var newPost = new postsModel(request.body);
+          var promise = newPost.save();
+          promise.then(function(post){
+            console.log("Saved new post, pushing into topic.posts")
+            topic.posts.push(post);
+            var promise = topic.save();
+            promise.then(function(topic){
+              console.log("Saved topic", topic)
+              response.json({topic:topic});
+            }).catch(function(err){
+              console.log("post.topic.save.ERROR", err);
+              response.json({})
+            })
+          }).catch(function(err){
+            console.log("post.save.ERROR", err);
+            response.json({})
+          })
+        }).catch(function(err){
+          console.log("topic.find.ERROR", err);
+          response.json({})
+        })
+
+        //
+        // var post = new postsModel(request.body);
+        // var promise = post.save();
+        // promise.then(function (post) {
+        //     console.log("post.SAVE.SUCCESS");
+        //     response.json({ message: "Successfully created post", post: post });
+        // }).catch(function (err) {
+        //     console.log("post.SAVE.ERROR", err);// if the server fails then log the error in the console
+        //     response.json({});// but do not propagate it to the browser
+        // });
     }
 };
 
@@ -380,7 +408,7 @@ app.post("/api/topics", topicsController.create);
 
 
 // create
-app.post("/api/posts", postsController.create);
+app.post("/api/topics/:id/posts", postsController.create);
 
 // create
 app.post("/api/comments", commentsController.create);

@@ -67,9 +67,9 @@ app.factory("discussionFactory", function ($http) {
       })
     }
 
-    factory.addNewPost = function (postdata, finishedAddingPost) {
-      $http.post('/api/posts', postdata).then(function (response) {
-        finishedAddingPost();
+    factory.addNewPost = function (topicId, postData, setTopic) {
+      $http.post('/api/topics/' + topicId + '/posts', postData).then(function (response) {
+        factory.showTopic(topicId, setTopic);
       });
     }
     return factory;
