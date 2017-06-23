@@ -12,7 +12,7 @@
   <hr>
 </div>
 
-<div class="post box" ng-repeat="post in topic.posts">
+<div class="box" ng-repeat="post in topic.posts">
   <p>
     <a href="#!/user/{{post._author._id}}">{{post._author.username}}:</a>
     {{post.postText}}
