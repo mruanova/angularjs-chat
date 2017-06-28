@@ -20,7 +20,7 @@
 
   <br>
   <div id="allposts">
-    <div class="postsbox" ng-repeat="post in topic.posts">
+    <div class="" ng-repeat="post in topic.posts">
       <p>
         <a href="#!/users/{{topic._author._id}}">{{post._author}}:</a> Said..<span class="posttext">  {{post.postText}} </span> |<span class="time"> {{post.createdAt|date: "hh:mm a"}} </span>
       </p> <!--post._author works-->
@@ -36,13 +36,11 @@
       <!--grabs the  number of dislikes-->
     </div>
   </div>
-  <div class="postsbox">
+  <div class="">
     <form enctype="multipart/form-data" ng-submit="addPost(currentUser.id, topic._id)">
       <label>Post here...</label>
       <br>
       <textarea name="name" class="text-box" ng-model="newPost.postText"></textarea>
-      <br>
-      <input type="file" name="file_upload" id="file_upload" multiple>
       <br>
       <input type="submit" class="button" name="" value="Post">
     </form>

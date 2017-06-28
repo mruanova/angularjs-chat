@@ -7,14 +7,13 @@
 /* Medium sized screens */
 @media only screen and (min-width: 481px) {
   .box{
-    width: 275px;
+    width: 570px;
   }
 }
 /* Large sized screens */
 @media only screen and (min-width: 1024px) {
   .box{
-    width: 275px;
-    /*width: 550px;*/
+    width: 600px;
   }
 }
 *{
@@ -26,46 +25,14 @@ body{
   text-align: center;
   background-color:#4E394C ;
 }
-.loginbox {
-  text-align: left;
-  background-color: white;
-  display: inline-block;
-  border-radius: 10px;
-  padding: 10px;
-}
-.registerbox {
-  text-align: left;
-  background-color: white;
-  display: inline-block;
-  border-radius: 10px;
-  padding: 10px;
-}
 .box {
   text-align: left;
-  width: 500px;
   background-color: white;
   display: inline-block;
   vertical-align: top;
   padding: 10px;
   margin-bottom: 5px;
   border-radius: 10px;
-}
-.channelbox{
-  text-align: center;
-  background-color: white;
-  display: inline-block;
-  padding: 10px;
-  border-radius: 10px;
-}
-.newchannelbox{
-  text-align: left;
-  background-color: white;
-  display: inline-block;
-  padding: 10px;
-  border-radius: 10px;
-}
-.postsbox {
-  width: 570px;
 }
 img{
   height: 100px;
@@ -137,6 +104,7 @@ span {
   overflow: scroll;
   background-color: black;
   color: white;
+  font-size: 0.75em;
 }
 .posttext {
   color: green;
