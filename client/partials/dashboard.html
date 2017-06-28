@@ -1,8 +1,5 @@
 <nav class="navbar navbar-default">
   <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="/#!">Discuss</a>
-    </div>
     <div id="navbar" class="navbar-collapse collapse in" aria-expanded="true">
       <ul class="nav navbar-nav navbar-right">
         <span>Welcome <span ng-bind="currentUser.username"></span>!
@@ -13,9 +10,8 @@
 </nav>
 
 <div class="box" id="search-bar">
-  <input type="search" name="search" ng-model="searchQuery">
+  <input type="search" name="search" ng-model="filter_channels">
   <input type="button" class="button" value="Search" ng-click="search()">
-
 </div>
 
 <table>
@@ -25,7 +21,7 @@
     <th>Username</th>
     <th>Posts</th>
   </tr>
-  <tr ng-repeat="topic in topics">
+  <tr ng-repeat="topic in topics | filter:filter_channels">
     <td>{{topic._category.name}}</td>
     <td><a href="#!/topics/{{topic._id}}">{{topic.title}}</a></td>
     <td><a href="#!/user/{{topic._user._id}}">{{topic._author.username}}</a></td>
