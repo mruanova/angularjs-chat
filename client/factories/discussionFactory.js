@@ -26,7 +26,7 @@ app.factory("discussionFactory", function ($http) {
         console.log("Received categories: ", response.data.categories);
         factory.categories = response.data.categories;
         if (factory.categories.length < 1) {
-          var categories = ["Web Fundamentals", "Python", "MEAN", "Ruby on Rails", "ASP.NET"];
+          var categories = ["Tech", "Sports", "Entertainment", "News", "Random"];
           for (var x = 0; x < categories.length; x += 1) {
             $http.post('/api/categories', { name: categories[x] }).then(function (response) {
               console.log(response);
