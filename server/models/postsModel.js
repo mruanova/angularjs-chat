@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 
 var postsSchema = new mongoose.Schema({
     _author: {
-        type: String,
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'Users',
         required: true
     },

@@ -8,8 +8,8 @@
   <div id="allposts">
     <div class="postsbox" ng-repeat="post in topic.posts">
       <p>
-        <a href="#!/users/{{post._author._id}}">{{post._author.username}}:</a> Said..<span class="posttext">  {{post.postText}} </span> |<span class="time"> {{post.createdAt|date: "hh:mm a"}} </span>
-      </p>
+        <a href="#!/users/{{topic._author._id}}">{{post._author}}:</a> Said..<span class="posttext">  {{post.postText}} </span> |<span class="time"> {{post.createdAt|date: "hh:mm a"}} </span>
+      </p> <!--post._author works-->
       <br>
 
       <!--<span>{{post.likes}}</span>
