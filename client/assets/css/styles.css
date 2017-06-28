@@ -18,7 +18,7 @@
   }
 }
 *{
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-family: 'Bungee', cursive;
   margin: 0;
   padding: 0;
 }
@@ -42,7 +42,7 @@ body{
 }
 .box {
   text-align: left;
-  width: 600px;
+  width: 500px;
   background-color: white;
   display: inline-block;
   vertical-align: top;
@@ -129,4 +129,15 @@ span {
 }
 #allposts {
   overflow: scroll;
+  background-color: black;
+  color: white;
+}
+.posttext {
+  color: green;
+}
+.time {
+  color: red;
+}
+.channelname {
+  color: #c39527;
 }
