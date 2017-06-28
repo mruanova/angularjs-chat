@@ -5,7 +5,23 @@
   <p>Description: {{topic.description}}</p>
 
   <br>
+  <div id="allposts">
+    <div class="postsbox" ng-repeat="post in topic.posts">
+      <p>
+        <a href="#!/user/{{post._author._id}}">{{post._author.username}}:</a> {{post.postText}}
+      </p>
+      <br>
 
+      <!--<span>{{post.likes}}</span>
+  <button type="button" class="button" name="like" ng-click="vote('like')">Like</button>
+  <span>{{post.dislikes}}</span>
+  <button type="button" class="button" name="button" ng-click="vote('dislike')">Dislike</button>-->
+      <!--<button ng-click="like(post._id)">Like {{post.like.length}}</button>-->
+      <!--grabs the  number of likes-->
+      <!--<button ng-click="dislike(post._id)">Dislike {{post.dislike.length}}</button>-->
+      <!--grabs the  number of dislikes-->
+    </div>
+  </div>
   <div class="postsbox">
     <form enctype="multipart/form-data" ng-submit="addPost(currentUser.id, topic._id)">
       <label>Post here...</label>
@@ -19,21 +35,4 @@
     <br>
   </div>
 
-  <br>
-
-  <div class="postsbox" ng-repeat="post in topic.posts">
-    <p>
-      <a href="#!/user/{{post._author._id}}">{{post._author.username}}:</a> {{post.postText}}
-    </p>
-    <br>
-    
-    <!--<span>{{post.likes}}</span>
-  <button type="button" class="button" name="like" ng-click="vote('like')">Like</button>
-  <span>{{post.dislikes}}</span>
-  <button type="button" class="button" name="button" ng-click="vote('dislike')">Dislike</button>-->
-    <!--<button ng-click="like(post._id)">Like {{post.like.length}}</button>-->
-    <!--grabs the  number of likes-->
-    <!--<button ng-click="dislike(post._id)">Dislike {{post.dislike.length}}</button>-->
-    <!--grabs the  number of dislikes-->
-  </div>
 </div>
