@@ -78,7 +78,7 @@ img{
   color: #4169e1;
 }
 .signout{
-  width: 210px;
+  width: 100px;
   margin-top: 5px;
   margin-left: 5px;
   color: #4169e1;
@@ -121,4 +121,9 @@ a {
 span {
   color: #c39527;
   
+}
+.container-fluid {
+  width: 120px;
+  display: inline-block;
+  text-align: center;
 }

@@ -1,30 +1,22 @@
 <div class="box">
   <h3><a href="#!/user/{{topic._author._id}}">{{topic._author.username}}</a> created a new channel:</h3>
-  <h5>{{topic.title}}</h5>
+  <h1> #{{topic.title}}</h1>
+  <br>
   <p>Description: {{topic.description}}</p>
 
   <br>
 
   <div class="postsbox">
-    <form ng-submit="addPost(currentUser.id, topic._id)">
+    <form enctype="multipart/form-data" ng-submit="addPost(currentUser.id, topic._id)">
       <label>Post here...</label>
+      <br>
       <textarea name="name" class="text-box" ng-model="newPost.postText"></textarea>
+      <br>
+      <input type="file" name="file_upload" id="file_upload" multiple>
+      <br>
       <input type="submit" class="button" name="" value="Post">
     </form>
-    <form action="#" enctype="multipart/form-data" method="post">
-     
-          <label for="name">Name:</label>
-          <input type="text" name="name" id="name" multiple>
-        
-
-        
-          <label for="file_upload">File:</label>
-          <input type="file" name="file_upload" id="file_upload" multiple>
-        
-
-        <input class="button green" type="submit" name="submit" value="Submit Content">
-      
-    </form>
+    <br>
   </div>
 
   <br>
@@ -34,20 +26,7 @@
       <a href="#!/user/{{post._author._id}}">{{post._author.username}}:</a> {{post.postText}}
     </p>
     <br>
-    <form action="#" enctype="multipart/form-data" method="post">
-      
-          <label for="name">Name:</label>
-          <input type="text" name="name" id="name" multiple>
-        
-
-        
-          <label for="file_upload">File:</label>
-          <input type="file" name="file_upload" id="file_upload" multiple>
-        
-
-        <input class="button green" type="submit" name="submit" value="Submit Content">
-      
-    </form>
+    
     <!--<span>{{post.likes}}</span>
   <button type="button" class="button" name="like" ng-click="vote('like')">Like</button>
   <span>{{post.dislikes}}</span>
