@@ -1,7 +1,6 @@
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="/#!/dashboard">mIRC</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse in" aria-expanded="true">
       <ul class="nav navbar-nav navbar-right">
@@ -13,10 +12,11 @@
 </nav>
 
 <div class="box">
+  <a class="navbar-brand" href="/#!/dashboard">mIRC</a>
   <h3><a href="#!/users/{{topic._author._id}}">{{topic._author.username}}</a> created a new channel:</h3>
   <h1> <span class="channelname">#{{topic.title}} </span></h1>
   <br>
-  <p>Description: {{topic.description}}</p>
+  <p>Description: "{{topic.description}}"</p>
 
   <br>
   <div id="allposts">
