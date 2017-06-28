@@ -1,22 +1,26 @@
 <div class="box">
-  <h3><a href="#!/user/{{topic._author._id}}">{{topic._author.username}}</a> posted a topic:</h3>
+  <h3><a href="#!/user/{{topic._author._id}}">{{topic._author.username}}</a> created a new channel:</h3>
   <h5>{{topic.title}}</h5>
   <p>Description: {{topic.description}}</p>
-</div>
-<div class="box">
+
+  <br>
+  
+  <div class="postsbox">
   <form ng-submit="addPost(currentUser.id, topic._id)">
-    <label>Answer here...</label>
+    <label>Post here...</label>
     <textarea name="name" class="text-box" ng-model="newPost.postText"></textarea>
     <input type="submit" class="button" name="" value="Post">
   </form>
-  <hr>
-</div>
+  </div>
 
-<div class="box" ng-repeat="post in topic.posts">
+  <br>
+
+  <div class="postsbox" ng-repeat="post in topic.posts">
   <p>
     <a href="#!/user/{{post._author._id}}">{{post._author.username}}:</a>
     {{post.postText}}
   </p>
+  <br>
   <!--<span>{{post.likes}}</span>
   <button type="button" class="button" name="like" ng-click="vote('like')">Like</button>
   <span>{{post.dislikes}}</span>
@@ -25,16 +29,7 @@
     <!--grabs the  number of likes-->
   <button ng-click="dislike(post._id)">Dislike {{post.dislike.length}}</button>
     <!--grabs the  number of dislikes-->
-
-  <p ng-repeat="comment in post.comments">
-    <a href="#!/user/{{comment._author._id}}">{{comment._author.username}}:</a>
-    {{comment.commentText}}
-  </p>
-
-  <form ng-submit="addComment(post._id, currentUser.id)">
-    <textarea class="text-box" name="commentText"></textarea>
-    <input type="submit" class="button" name="" value="Comment">
-  </form>
-
-
+  </div>
 </div>
+
+

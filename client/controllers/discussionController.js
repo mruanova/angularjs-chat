@@ -1,4 +1,4 @@
-app.controller("discussionController", function ($scope, $location, userFactory, discussionFactory, $cookies, $routeParams) {
+app.controller("discussionController", function ($scope, $location, userFactory, discussionFactory, commentFactory, $cookies, $routeParams) {
   $scope.user = {};
   var checkCurrentUser = function () {
     if (!userFactory.currentUser) {
@@ -46,14 +46,14 @@ app.controller("discussionController", function ($scope, $location, userFactory,
       discussionFactory.addNewPost(topicId, newPost, setTopic);
       // $route.reload();
     }
-    $scope.addComment = function (postidfrompage, newcomment) {
-      console.log("controller.addComent");
+    $scope.addNewComment = function (postidfrompage, newcomment) {
+      console.log("controller.addNewComment");
       var newcommentdata = {
         commentText: newcomment.commentText,
         _author: $scope.user.id,
         _post: postidfrompage
       };
-      discussionFactory.addNewComent(newcommentdata, function () {
+      discussionFactory.addNewComment(newcommentdata, function () {
         $scope.newcomment = {};
       })
       // $route.reload();

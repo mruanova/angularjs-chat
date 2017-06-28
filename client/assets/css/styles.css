@@ -28,16 +28,20 @@ body{
 }
 .box {
   text-align: left;
-  border: 1px solid black;
+  width: 600px;
   background-color: white;
   display: inline-block;
   vertical-align: top;
-  padding: 5px;
+  padding: 10px;
   margin-bottom: 5px;
+  border-radius: 10px;
+}
+.postsbox {
+  width: 570px;
 }
 img{
-  height: 50px;
-  width: 50px;
+  height: 100px;
+  width: 100px;
 }
 .button{
   width: 250px;
