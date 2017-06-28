@@ -107,11 +107,7 @@ span {
   overflow: scroll;
   background-color: black;
   color: white;
-<<<<<<< HEAD
   font-size: 0.75em;
-=======
-  
->>>>>>> 679b55590497c806b542fda5d204f9a8052a1e2d
 }
 .posttext {
   color: green;
@@ -120,6 +116,8 @@ span {
   color: red;
 }
 .channelname {
-  color: #c39527;
-  
+  color: #c39527; 
+}
+table{
+  width:100%;
 }
