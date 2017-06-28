@@ -1,4 +1,4 @@
-﻿Mauricio Ruanova-Hurtado and MIKE BRAUN.MEAN (MongoDB ExpressJS AngularJS NodeJS) discussion board.
+﻿Mauricio Ruanova-Hurtado and MIKE BRAUN.MEAN and Mike Brown(MongoDB ExpressJS AngularJS NodeJS) discussion board.
 
 Assignment: Discussion Board
 This is our final MEAN project before the belt exam. 
