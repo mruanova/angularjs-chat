@@ -24,8 +24,8 @@ module.exports = function (app) {
     // create topic
     app.post("/api/topics", topicsController.create);
     //likes and dislikes
-    app.put('/like', topicsController.Like);
-    app.put('/dislike', topicsController.Dislike);
+    app.put('/api/like', topicsController.Like);
+    app.put('/api/dislike', topicsController.Dislike);
 
     // create
     app.post("/api/topics/:id/posts", postsController.create);
