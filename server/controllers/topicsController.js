@@ -33,26 +33,26 @@ module.exports = {
                                 response.json({ topics: topics, posts: posts, comments: comments });
                             } else {
                                 console.log("comments not found");
-                                response.json({});
+                                response.json(err);
                             }
                         }).catch(function (err) {
-                            console.log("comments.find.ERROR", err);// if the server fails then log the error in the console
-                            response.json({});// but do not propagate it to the browser
+                            console.log("comments.find.ERROR", err);
+                            response.json(err);
                         });
                     } else {
                         console.log("posts not found");
                     }
                 }).catch(function (err) {
-                    console.log("posts.find.ERROR", err);// if the server fails then log the error in the console
-                    response.json({});// but do not propagate it to the browser
+                    console.log("posts.find.ERROR", err);
+                    response.json(err);
                 });
             } else {
                 console.log("topics not found");
-                response.json({});
+                response.json(err);
             }
         }).catch(function (err) {
-            console.log("topics.find.ERROR", err);// if the server fails then log the error in the console
-            response.json({});// but do not propagate it to the browser
+            console.log("topics.find.ERROR", err);
+            response.json(err);
         });
     },
     create: function (request, response) {
@@ -66,7 +66,7 @@ module.exports = {
             response.json({ topic: topic })
         }).catch(function (err) {
             console.log("topic.create.SAVE.ERROR", err);
-            response.json({});
+            response.json(err);
         })
 
     },
@@ -78,7 +78,7 @@ module.exports = {
             response.json({ topic: topic });
         }).catch(function (err) {
             console.log("topic.show.ERROR", err);
-            response.json({});
+            response.json(err);
         })
     },
     Like: function (request, response) {

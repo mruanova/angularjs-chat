@@ -29,16 +29,16 @@ module.exports = {
                     console.log("comment.SAVE.SUCCESS");
                     response.json({ message: "Successfully created comment", comment: comment });
                 }).catch(function (err) {
-                    console.log("comment.SAVE.ERROR", err);// if the server fails then log the error in the console
-                    response.json({});// but do not propagate it to the browser
+                    console.log("comment.SAVE.ERROR", err);
+                    response.json(err);
                 });
             }).catch(function (err) {
                 console.log("comments.create.user.save.ERROR", err);
-                response.json({})
+                response.json(err);
             });
         }).catch(function (err) {
             console.log("comments.create.user.findOne.ERROR", err);
-            response.json({})
+            response.json(err);
         });
     }
 };

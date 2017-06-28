@@ -35,8 +35,8 @@ module.exports = {
                 response.json({ error: { message: "Email not found, please register" } })
             }
         }).catch(function (err) {
-            console.log("LOGIN ERROR", err);// if the server fails then log the error in the console
-            response.json({});//  but do not propagate it to the browser
+            console.log("LOGIN ERROR", err);
+            response.json(err);
         });
     },
     create: function (request, response) {
@@ -53,13 +53,13 @@ module.exports = {
                     console.log("USER.SAVE.SUCCESS");
                     response.json({ user: user });
                 }).catch(function (err) {
-                    console.log("USER.SAVE.ERROR", err);// if the server fails then log the error in the console
-                    response.json({});// but do not propagate it to the browser
+                    console.log("USER.SAVE.ERROR", err);
+                    response.json(err);
                 });
             }
         }).catch(function (err) {
-            console.log("LOGIN ERROR", err);// if the server fails then log the error in the console
-            response.json({});// but do not propagate it to the browser
+            console.log("LOGIN ERROR", err);
+            response.json(err);
         });
     },
     show: function (request, response) {
@@ -68,8 +68,8 @@ module.exports = {
             console.log("USER.show.SUCCESS");
             response.json(user);
         }).catch(function (err) {
-            console.log("USER.show.ERROR", err);// if the server fails then log the error in the console
-            response.json({});// but do not propagate it to the browser
+            console.log("USER.show.ERROR", err);
+            response.json(err);
         });
     }
 };

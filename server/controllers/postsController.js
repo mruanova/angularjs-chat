@@ -39,23 +39,23 @@ module.exports = {
                             response.json({ topic: topic });
                         }).catch(function (err) {
                             console.log("post.user.save.topics.ERROR", err);
-                            response.json({})
+                            response.json(err);
                         })
                     }).catch(function (err) {
                         console.log("post.topic.save.ERROR", err);
-                        response.json({})
+                        response.json(err);
                     })
                 }).catch(function (err) {
                     console.log("post.save.ERROR", err);
-                    response.json({})
+                    response.json(err);
                 })
             }).catch(function (err) {
                 console.log("topic.show.ERROR", err);
-                response.json({});
+                response.json(err);
             })
         }).catch(function (err) {
             console.log("topic.find.ERROR", err);
-            response.json({})
+            response.json(err);
         });
     }
 };

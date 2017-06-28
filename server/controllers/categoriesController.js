@@ -24,11 +24,11 @@ module.exports = {
                 response.json({ categories: categories });
             } else {
                 console.log("categories not found");
-                response.json({});
+                response.json(err);
             }
         }).catch(function (err) {
-            console.log("categories.show.ERROR", err);// if the server fails then log the error in the console
-            response.json({});// but do not propagate it to the browser
+            console.log("categories.show.ERROR", err);
+            response.json(err);
         });
     },
     create: function (request, response) {
@@ -38,8 +38,8 @@ module.exports = {
             console.log("category.SAVE.SUCCESS");
             response.json({ category: category });
         }).catch(function (err) {
-            console.log("category.SAVE.ERROR", err);// if the server fails then log the error in the console
-            response.json({});// but do not propagate it to the browser
+            console.log("category.SAVE.ERROR", err);
+            response.json(err);
         });
     }
 };
