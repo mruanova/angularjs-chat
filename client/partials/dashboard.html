@@ -1,7 +1,7 @@
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="/#!/dashboard">mIRC</a>
+      <a class="navbar-brand" href="/#!/dashboard"><img src="favicon.ico" alt="mIRC" class="small"></a>
     </div>
     <div id="navbar" class="navbar-collapse collapse in" aria-expanded="true">
       <ul class="nav navbar-nav navbar-right">
@@ -16,26 +16,26 @@
 
 <div class="box">
   <input id="search-bar" type="search" name="search" ng-model="filter_channels" placeholder="Search Channels">
- 
+
 
   <br>
 
   <table>
-  <tr>
-    <th>Channel </th>
-    <!--<th> Category </th>-->
-    <th> Creator </th>
-    <!--<th>Posts</th>-->
-  </tr>
-  <tr ng-repeat="topic in topics | filter:filter_channels">
-    <td><a href="#!/topics/{{topic._id}}">{{topic.title}}</a></td>
-    <td>
-      <img src="./images/8bit.jpg" alt="avatar" class="small">
-      <a href="#!/users/{{topic._author._id}}">{{topic._author.username}}</a>
-    </td>
-    <!--<td>{{topic.posts.length}}</td>-->
-  </tr>
-</table>
+    <tr>
+      <th>Channel </th>
+      <!--<th> Category </th>-->
+      <th> Creator </th>
+      <!--<th>Posts</th>-->
+    </tr>
+    <tr ng-repeat="topic in topics | filter:filter_channels">
+      <td><a href="#!/topics/{{topic._id}}">{{topic.title}}</a></td>
+      <td>
+        <img src="./images/8bit.jpg" alt="avatar" class="small">
+        <a href="#!/users/{{topic._author._id}}">{{topic._author.username}}</a>
+      </td>
+      <!--<td>{{topic.posts.length}}</td>-->
+    </tr>
+  </table>
 </div>
 
 <br>

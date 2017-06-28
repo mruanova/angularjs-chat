@@ -1,7 +1,7 @@
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="/#!/dashboard">mIRC</a>
+      <a class="navbar-brand" href="/#!/dashboard"><img src="favicon.ico" alt="mIRC" class="small"></a>
     </div>
     <div id="navbar" class="navbar-collapse collapse in" aria-expanded="true">
       <ul class="nav navbar-nav navbar-right">
@@ -22,8 +22,9 @@
   <div id="allposts">
     <div class="" ng-repeat="post in topic.posts">
       <p>
-        <a href="#!/users/{{topic._author._id}}">{{post._author}}:</a> Said..<span class="posttext">  {{post.postText}} </span> |<span class="time"> {{post.createdAt|date: "hh:mm a"}} </span>
-      </p> <!--post._author works-->
+        <a href="#!/users/{{topic._author._id}}">{{post._author.username}}:</a> Said..<span class="posttext">  {{post.postText}} </span>        |<span class="time"> {{post.createdAt|date: "hh:mm a"}} </span>
+      </p>
+      <!--post._author works-->
       <br>
 
       <!--<span>{{post.likes}}</span>

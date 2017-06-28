@@ -1,15 +1,15 @@
 <nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="/#!/dashboard">mIRC</a>
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/#!/dashboard"><img src="favicon.ico" alt="mIRC" class="small"></a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse in" aria-expanded="true">
+            <ul class="nav navbar-nav navbar-right">
+                <span>Welcome <span ng-bind="user.username"></span>!
+                <input class="signout" type="button" value="Sign Out" ng-click="logout()">
+            </ul>
+        </div>
     </div>
-    <div id="navbar" class="navbar-collapse collapse in" aria-expanded="true">
-      <ul class="nav navbar-nav navbar-right">
-        <span>Welcome <span ng-bind="user.username"></span>!
-        <input class="signout" type="button" value="Sign Out" ng-click="logout()">
-      </ul>
-    </div>
-  </div>
 </nav>
 
 <div class="box">
@@ -17,9 +17,9 @@
     <label for="" ng-bind="user.username"></label>
     <label for="" ng-bind="user.email"></label>
     <ul>
-    <li ng-repeat="topic in user.topics">
-        {{ topic.title }}
-    </li>
+        <li ng-repeat="topic in user.topics">
+            {{ topic.title }}
+        </li>
     </ul>
-    <a href="#!/dashboard">channels</a> 
+    <a href="#!/dashboard">channels</a>
 </div>
