@@ -17,10 +17,14 @@
     <a href="#!/user/{{post._author._id}}">{{post._author.username}}:</a>
     {{post.postText}}
   </p>
-  <span>{{post.likes}}</span>
+  <!--<span>{{post.likes}}</span>
   <button type="button" class="button" name="like" ng-click="vote('like')">Like</button>
   <span>{{post.dislikes}}</span>
-  <button type="button" class="button" name="button" ng-click="vote('dislike')">Dislike</button>
+  <button type="button" class="button" name="button" ng-click="vote('dislike')">Dislike</button>-->
+    <button ng-click="like(post._id)">Like {{post.like.length}}</button>
+    <!--grabs the  number of likes-->
+    <button ng-click="dislike(post._id)">Dislike {{post.dislike.length}}</button>
+    <!--grabs the  number of dislikes-->
 
   <p ng-repeat="comment in post.comments">
     <a href="#!/user/{{comment._author._id}}">{{comment._author.username}}:</a>

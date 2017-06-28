@@ -59,4 +59,35 @@ app.controller("discussionController", function ($scope, $location, userFactory,
       // $route.reload();
     }
   }
+  $scope.like = function (post_id) {
+    factory.like(post_id, $scope.user_id, function (data) {
+      //connects the likes to the factory
+      if (data.err) {
+        console.log(data.err)
+        // logs any errors
+      }
+      else {
+        console.log(data.like)
+        $scope.showOneTopic();
+        // else adds like to scope.
+      }
+    })
+  }
+  $scope.dislike = function (post_id) {
+    //connects the dislikes to the factory
+    factory.dislike(post_id, $scope.user_id, function (data) {
+
+      if (data.err) {
+        //logs any errors
+        console.log(data.err)
+
+      }
+      else {
+        // else adds dislike to scope
+        console.log(data.dislike)
+        $scope.showOneTopic();
+
+      }
+    })
+  }
 });
