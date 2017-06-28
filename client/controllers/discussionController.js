@@ -68,7 +68,7 @@ app.controller("discussionController", function ($scope, $location, userFactory,
       }
       else {
         console.log(data.like)
-        $scope.showOneTopic();
+        $scope.showTopic();
         // else adds like to scope.
       }
     })
@@ -85,7 +85,7 @@ app.controller("discussionController", function ($scope, $location, userFactory,
       else {
         // else adds dislike to scope
         console.log(data.dislike)
-        $scope.showOneTopic();
+        $scope.showTopic();
 
       }
     })
