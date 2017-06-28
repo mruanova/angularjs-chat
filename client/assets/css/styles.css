@@ -50,6 +50,20 @@ body{
   margin-bottom: 5px;
   border-radius: 10px;
 }
+.channelbox{
+  text-align: center;
+  background-color: white;
+  display: inline-block;
+  padding: 10px;
+  border-radius: 10px;
+}
+.newchannelbox{
+  text-align: left;
+  background-color: white;
+  display: inline-block;
+  padding: 10px;
+  border-radius: 10px;
+}
 .postsbox {
   width: 570px;
 }
@@ -99,11 +113,7 @@ textarea{
   margin-top: 5px;
   width: 250px;
 }
-table{
-  width: 100%;
-  background-color: #eee;
-  margin-bottom: 5px;
-}
+
 a {
   color: #4169e1;
 

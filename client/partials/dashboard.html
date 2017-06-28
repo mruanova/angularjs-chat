@@ -11,48 +11,63 @@
 
 <br>
 
-<div class="box" id="search-bar">
-  <input type="search" name="search" ng-model="filter_channels">
-  <input type="button" class="button" value="Search" ng-click="search()">
+<div class="channelbox">
+  <input id="search-bar" type="search" name="search" ng-model="filter_channels" placeholder="Search Channels">
+ 
 
   <br>
 
   <table>
   <tr>
-    <th>Channel Name</th>
-    <th> Category </th>
+    <th>Channel </th>
+    <!--<th> Category </th>-->
     <th> Creator </th>
-    <th>Posts</th>
+    <!--<th>Posts</th>-->
   </tr>
   <tr ng-repeat="topic in topics | filter:filter_channels">
     <td><a href="#!/topics/{{topic._id}}">{{topic.title}}</a></td>
-    <td>{{topic._category.name}}</td>
+    <!--<td>{{topic._category.name}}</td>-->
     <td><a href="#!/user/{{topic._user._id}}">{{topic._author.username}}</a></td>
-    <td>{{topic.posts.length}}</td>
+    <!--<td>{{topic.posts.length}}</td>-->
   </tr>
 </table>
 </div>
 
 <br>
+<br>
 
-<div class="box">
+<div class="newchannelbox">
   <form ng-submit="addTopic(currentUser.id)">
     <legend>Add a new Channel</legend>
+
+    <br>
 
     <input type="hidden" name="user" ng-model="newTopic._author" value="{{currentUser.id}}">
 
     <label for="title">Channel Name:</label>
+    <br>
     <input type="text" name="title" ng-model="newTopic.title">
 
+    <br>
+    <br>
+
     <label for="description">Description:</label>
+    <br>
     <textarea name="description" class="text-box" ng-model="newTopic.description"></textarea>
 
+    <br>
+    <br>
+
     <label for="category">Category:</label>
+    <br>
     <select name="category" ng-model="newTopic._category">
       <option ng-repeat="category in categories" value="{{category._id}}">{{category.name}}</option>
     </select>
 
+    <br>
+
     <label for="button"></label>
+    <br>
     <input type="submit" class="button" value="Submit">
   </form>
 </div>
