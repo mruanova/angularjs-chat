@@ -42,7 +42,6 @@ body{
 }
 .box {
   text-align: left;
-  width: 500px;
   background-color: white;
   display: inline-block;
   vertical-align: top;
@@ -112,6 +111,7 @@ select{
 textarea{
   margin-top: 5px;
   width: 250px;
+  
 }
 navbar-header{
   float:left;
@@ -142,4 +142,8 @@ span {
 }
 .channelname {
   color: #c39527;
+  text-shadow: -1px -1px 0 #000,
+                1px -1px 0 #000,
+                -1px 1px 0 #000,
+                1px 1px 0 #000;
 }
