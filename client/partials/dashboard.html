@@ -51,7 +51,7 @@
 
     <label for="title">Channel Name:</label>
     <br>
-    <input type="text" name="title" ng-model="newTopic.title">
+    <input id="textbackground" type="text" name="title" ng-model="newTopic.title">
 
     <br>
     <br>
@@ -65,7 +65,7 @@
 
     <label for="category">Category:</label>
     <br>
-    <select name="category" ng-model="newTopic._category">
+    <select id="textbackground" name="category" ng-model="newTopic._category">
       <option ng-repeat="category in categories" value="{{category._id}}">{{category.name}}</option>
     </select>
 
