@@ -9,44 +9,64 @@
   </ul>
 </div>
 
-<div class="box">
+<div class="registerbox">
   <legend><a href="#!/login" ng-class="{selected: login}">Login</a> | Register</legend>
+
+  <br>
+
+
   <form name="registerForm" ng-submit="register()">
     <label for="username">User Name:</label>
+    <br>
     <input name="username" type="text" ng-model="registerUser.username" minlength="3" required>
     <span ng-messages="registerForm.username.$error">
     <span class="red" ng-message="required">*</span>
     <p class="red" ng-message="minlength">Minimum length = 3.</p>
     </span>
 
+  <br>
+  <br>
+
     <label for="email">Email:</label>
+    <br>
     <input name="email" type="email" ng-model="registerUser.email" minlength="8" required
     ng-pattern="/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/">
     <span ng-messages="registerForm.email.$error">
     <span class="red" ng-message="required">*</span>
-    <p class="red" ng-message="minlength">Minimum length = 3.</p>
+    <p class="red" ng-message="minlength">Minimum length for email is 8.</p>
     <p class="red" ng-message="pattern">Invalid email address pattern.</p>
     </span>
     <span class="error-message" ng-if="errors.emailTaken">A user already exists with this email. Please log in.</span>
 
+  <br>
+  <br>
+
     <label for="password">Password:</label>
+    <br>
     <input name="password" type="password" ng-model="registerUser.password" minlength="8"
     required ng-pattern="/^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/">
     <span ng-messages="registerForm.password.$error">
     <span class="red" ng-message="required">*</span>
-    <p class="red" ng-message="minlength">Minimum length = 8.</p>
+    <p class="red" ng-message="minlength">Minimum length for password is 8.</p>
     <p class="red" ng-message="pattern">Invalid password pattern.</p>
     </span>
 
+    <br>
+    <br>
+
     <label for="confirm">Confirm Password:</label>
+    <br>
     <input name="confirm" type="password" ng-model="confirm" minlength="8" required
     ng-pattern="/^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/">
     <span ng-messages="registerForm.confirm.$error">
     <span class="red" ng-message="required">*</span>
-    <p class="red" ng-message="minlength">Minimum length = 8.</p>
+    <p class="red" ng-message="minlength">Minimum length for password is 8.</p>
     <p class="red" ng-message="pattern">Invalid password pattern.</p>
     </span>
     <span class="red error-message" ng-if="errors.confirm">Passwords must match</span>
+
+    <br>
+    <br>
 
     <label for="button"></label>
     <input class="button" type='submit' value="Register">

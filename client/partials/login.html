@@ -9,25 +9,34 @@
   </ul>
 </div>
 
-<div class="box">
+<div class="loginbox">
   <legend>Login | <a href="#!/register" ng-class="{selected: !login}">Register</a></legend>
+  <br>
   <form name="loginForm" ng-submit="login()">
     <label for="email">Email:</label>
+    <br>
     <input name="email" type="email" ng-model="logindata.email" minlength="8" required ng-pattern="/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/">
     <span ng-messages="loginForm.email.$error">
     <span class="red" ng-message="required">*</span>
-    <p class="red" ng-message="minlength">Minimum length = 8.</p>
+    <p class="red" ng-message="minlength">Minimum length for email is 8.</p>
     <p class="red" ng-message="pattern">Invalid email address pattern.</p>
     </span>
 
+    <br>
+    <br>
+
     <label for="password">Password:</label>
+    <br>
     <input name="password" type="password" ng-model="logindata.password" minlength="8" required
     ng-pattern="/^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/">
     <span ng-messages="loginForm.password.$error">
     <span class="red" ng-message="required">*</span>
-    <p class="red" ng-message="minlength">Minimum length = 8.</p>
+    <p class="red" ng-message="minlength">Minimum length for password is 8.</p>
     <p class="red" ng-message="pattern">Invalid password pattern.</p>
     </span>
+
+    <br> 
+    <br>
 
     <label for="button"></label>
     <input class="button" type="submit" value="Login">
