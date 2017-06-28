@@ -23,12 +23,13 @@ module.exports = function (app) {
     app.get("/api/topics", topicsController.index);
     // create topic
     app.post("/api/topics", topicsController.create);
+    //likes and dislikes
+    app.put('/like', topicsController.Like);
+    app.put('/dislike', topicsController.Dislike);
 
     // create
     app.post("/api/topics/:id/posts", postsController.create);
     // create
     app.post("/api/comments", commentsController.create);
-    //likes and dislikes
-    app.put('/like', topicsController.Like),
-    app.put('/dislike', topicsController.Dislike)
+
 }

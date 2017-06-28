@@ -60,7 +60,7 @@ app.controller("discussionController", function ($scope, $location, userFactory,
     }
   }
   $scope.like = function (post_id) {
-    factory.like(post_id, $scope.user_id, function (data) {
+    discussionFactory.like(post_id, $scope.user_id, function (data) {
       //connects the likes to the factory
       if (data.err) {
         console.log(data.err)
@@ -75,7 +75,7 @@ app.controller("discussionController", function ($scope, $location, userFactory,
   }
   $scope.dislike = function (post_id) {
     //connects the dislikes to the factory
-    factory.dislike(post_id, $scope.user_id, function (data) {
+    discussionFactory.dislike(post_id, $scope.user_id, function (data) {
 
       if (data.err) {
         //logs any errors
