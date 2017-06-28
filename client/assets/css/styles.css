@@ -127,3 +127,6 @@ span {
   display: inline-block;
   text-align: center;
 }
+#allposts {
+  overflow: scroll;
+}
