@@ -80,7 +80,8 @@ app.factory("commentFactory", function ($http) {
     });
   };
 
-  factory.addComent = function (postdata, finishedAddingComment) {
+  factory.addNewComent = function (postdata, finishedAddingComment) {
+    console.log("factory.addComent");
     $http.post('/api/comments', postdata).then(function (response) {
       finishedAddingComment();
     });

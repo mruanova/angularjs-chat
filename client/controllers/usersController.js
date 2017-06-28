@@ -2,11 +2,8 @@ app.controller("usersController", function ($scope, $location, userFactory, $coo
 
   $scope.errors = {};
 
-  // console.log($location.url())
-
-
-  var updateCookies = function(redirect = null){
-    if (userFactory.currentUser){
+  var updateCookies = function (redirect = null) {
+    if (userFactory.currentUser) {
       // console.log()
       $cookies.put('currentUserId', userFactory.currentUser.id);
       $cookies.put('currentUserUsername', userFactory.currentUser.username)
@@ -25,39 +22,39 @@ app.controller("usersController", function ($scope, $location, userFactory, $coo
       // $scope.currentUser.username = $cookies.get('currentUserUsername')
       // userFactory.currentUser = $scope.currentUser
     }
-    if(redirect){
+    if (redirect) {
       $location.url(redirect)
     }
 
   }
 
-  var errorCatcher = function(errors){
-      console.log("Caught errors:", errors)
-      // if (errors.error.email){
-      //   $scope.errors.emailTaken = errors.error.email.message
-      // }
-      // $scope.errors.emailTaken = null;
-      // // console.log("Email isn't taken...")
-      // if (errors.error){
-      //   if (errors.error.email){
-      //     $scope.errors.email = errors.errors.email.message
-      //   }
-      //   if (errors.errors.first_name){
-      //     $scope.errors.first_name = errors.errors.first_name.message
-      //   }
-      //   if (errors.errors.last_name){
-      //     $scope.errors.last_name = errors.errors.last_name.message
-      //   }
-      //   if (errors.errors.password){
-      //     $scope.errors.password = errors.errors.password.message
-      //   }
-      //   if (errors.errors.birthday){
-      //     $scope.errors.birthday = errors.errors.birthday.message
-      //   }
-      // }
-    }
+  var errorCatcher = function (errors) {
+    console.log("Caught errors:", errors)
+    // if (errors.error.email){
+    //   $scope.errors.emailTaken = errors.error.email.message
+    // }
+    // $scope.errors.emailTaken = null;
+    // // console.log("Email isn't taken...")
+    // if (errors.error){
+    //   if (errors.error.email){
+    //     $scope.errors.email = errors.errors.email.message
+    //   }
+    //   if (errors.errors.first_name){
+    //     $scope.errors.first_name = errors.errors.first_name.message
+    //   }
+    //   if (errors.errors.last_name){
+    //     $scope.errors.last_name = errors.errors.last_name.message
+    //   }
+    //   if (errors.errors.password){
+    //     $scope.errors.password = errors.errors.password.message
+    //   }
+    //   if (errors.errors.birthday){
+    //     $scope.errors.birthday = errors.errors.birthday.message
+    //   }
+    // }
+  }
 
-  if ($location.url() == '/register'){
+  if ($location.url() == '/register') {
     console.log("Viewing register page")
     $scope.register = function () {
       if ($scope.registerUser.password == $scope.confirm) {
@@ -70,7 +67,7 @@ app.controller("usersController", function ($scope, $location, userFactory, $coo
     }
   }
 
-  if ($location.url() == '/login'){
+  if ($location.url() == '/login') {
     // updateCookies();
     console.log("Viewing login page")
     $scope.login = function () {
@@ -79,21 +76,12 @@ app.controller("usersController", function ($scope, $location, userFactory, $coo
     }
   }
 
-
-  if ($location.url().match('^/users/')){
+  if ($location.url().match('^/users/')) {
     console.log("Viewing user show page")
-
     //TODO need to flesh this out later
   }
-
 
   // var getUser = function(){
   //   userFactory.show()
   // }
-
-
-
-
-
-
 });

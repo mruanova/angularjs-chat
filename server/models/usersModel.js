@@ -28,15 +28,23 @@ var usersSchema = new mongoose.Schema({
         type: String,
         required: true,
         minlength: 8,
-        maxlength: 24,
+        maxlength: 240,
         validate: {
             validator: function (value) {
                 return regex_password.test(value);
             },
             message: "Password failed validation, you must have at least 1 number, uppercase and special character"
         }
-    }
+    },
+    topics: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Topics',
+    }]
 }, { timestamps: true });
+
+usersSchema.methods.generateHash = function (password) {
+    return bcrypt.hashSync(password, bcrypt.genSaltSync(8));
+}
 
 usersSchema.methods.comparePassword = function (password) {
     return bcrypt.compareSync(password, this.password);
