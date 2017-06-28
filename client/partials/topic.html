@@ -1,5 +1,5 @@
 <div class="box">
-  <h3><a href="#!/user/{{topic._author._id}}">{{topic._author.username}}</a> created a new channel:</h3>
+  <h3><a href="#!/users/{{topic._author._id}}">{{topic._author.username}}</a> created a new channel:</h3>
   <h1> #{{topic.title}}</h1>
   <br>
   <p>Description: {{topic.description}}</p>
@@ -8,7 +8,7 @@
   <div id="allposts">
     <div class="postsbox" ng-repeat="post in topic.posts">
       <p>
-        <a href="#!/user/{{post._author._id}}">{{post._author.username}}:</a> {{post.postText}}
+        <a href="#!/users/{{post._author._id}}">{{post._author.username}}:</a> {{post.postText}}
       </p>
       <br>
 
