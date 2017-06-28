@@ -113,7 +113,9 @@ textarea{
   margin-top: 5px;
   width: 250px;
 }
-
+navbar-header{
+  float:left;
+}
 a {
   color: #4169e1;
 
@@ -123,7 +125,7 @@ span {
   
 }
 .container-fluid {
-  width: 120px;
+  width:100%;
   display: inline-block;
   text-align: center;
 }
