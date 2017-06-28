@@ -1,0 +1,10 @@
+<div class="box">
+    <label for="" ng-bind="user.username"></label>
+    <label for="" ng-bind="user.email"></label>
+    
+    <ul>
+    <li ng-repeat="topic in user.topics">
+        {{ topic.title }}
+    </li>
+    </ul>
+</div>

@@ -27,7 +27,7 @@
   <tr ng-repeat="topic in topics | filter:filter_channels">
     <td><a href="#!/topics/{{topic._id}}">{{topic.title}}</a></td>
     <!--<td>{{topic._category.name}}</td>-->
-    <td><a href="#!/user/{{topic._user._id}}">{{topic._author.username}}</a></td>
+    <td><a href="#!/users/{{topic._author._id}}">{{topic._author.username}}</a></td>
     <!--<td>{{topic.posts.length}}</td>-->
   </tr>
 </table>
