@@ -16,16 +16,19 @@ module.exports = function (app) {
     app.get("/api/categories", categoriesController.index);
     // create
     app.post("/api/categories", categoriesController.create);
-    
+
     // retrieve one / show one / find one
     app.get('/api/topics/:id', topicsController.show);
     // index / find / search / retrieve all / show all
     app.get("/api/topics", topicsController.index);
     // create topic
     app.post("/api/topics", topicsController.create);
-    
+
     // create
     app.post("/api/topics/:id/posts", postsController.create);
     // create
     app.post("/api/comments", commentsController.create);
+    //likes and dislikes
+    app.put('/like', topicsController.Like),
+    app.put('/dislike', topicsController.Dislike)
 }

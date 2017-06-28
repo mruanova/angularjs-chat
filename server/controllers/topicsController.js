@@ -80,5 +80,30 @@ module.exports = {
             console.log("topic.show.ERROR", err);
             response.json({});
         })
+    },
+    Like: function (request, response) {
+        Post.findOne({ _id: request.body.post }, function (err, post) { // creates likes
+            if (err) {
+                response.json({ err: err })
+            }
+            else {
+                post.like.push(request.body.user);
+                post.save((err) => { console.log(err); })
+                response.json({ post: post })
+            }
+        })
+    },
+    Dislike: function (request, response) { //creates dislikes
+        Post.findOne({ _id: request.body.post }, function (err, post) {
+            console.log(post)
+            if (err) {
+                response.json({ err: err })
+            }
+            else {
+                post.dislike.push(request.body.user);
+                post.save((err) => { console.log(err); })
+                response.json({ post: post })
+            }
+        })
     }
 };

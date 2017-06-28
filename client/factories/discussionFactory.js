@@ -67,6 +67,17 @@ app.factory("discussionFactory", function ($http) {
       factory.showTopic(topicId, setTopic);
     });
   }
+  factory.like = function (post, user, callback) {
+    $http.put('/like', { post: post, user: user }).then(function (data) {
+      callback(data.data)
+    })
+  }
+  factory.dislike = function (post, user, callback) {
+    console.log(user)
+    $http.put('/dislike', { post: post, user: user }).then(function (data) {
+      callback(data.data)
+    })
+  }
   return factory;
 });
 
