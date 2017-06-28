@@ -1,19 +1,30 @@
 {
   "name": "discuss",
   "version": "1.0.0",
-  "description": "",
+  "description": "Mauricio Ruanova-Hurtado and MIKE BRAUN.MEAN (MongoDB ExpressJS AngularJS NodeJS) discussion board.",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mruanova/discuss.git"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mruanova/discuss/issues"
+  },
+  "homepage": "https://github.com/mruanova/discuss#readme",
   "dependencies": {
+    "angular": "^1.6.4",
+    "angular-cookies": "^1.6.4",
+    "angular-route": "^1.6.4",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.17.2",
     "express": "^4.15.3",
-    "mongoose": "^4.10.6",
+    "mongoose": "^4.11.0"
   }
 }
