@@ -1,5 +1,5 @@
 app.controller("usersController", function ($scope, $location, userFactory, $cookies) {
-
+$scope.user=userFactory.currentUser;
   $scope.errors = {};
 
   var updateCookies = function (redirect = null) {
