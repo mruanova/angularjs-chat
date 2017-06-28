@@ -111,7 +111,9 @@ select{
 textarea{
   margin-top: 5px;
   width: 250px;
-  
+  background-color: black;
+  color: green;
+
 }
 navbar-header{
   float:left;
@@ -133,6 +135,7 @@ span {
   overflow: scroll;
   background-color: black;
   color: white;
+  
 }
 .posttext {
   color: green;
@@ -142,8 +145,5 @@ span {
 }
 .channelname {
   color: #c39527;
-  text-shadow: -1px -1px 0 #000,
-                1px -1px 0 #000,
-                -1px 1px 0 #000,
-                1px 1px 0 #000;
+  
 }
