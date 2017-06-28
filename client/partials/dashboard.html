@@ -31,11 +31,11 @@
 
 <div class="box">
   <form ng-submit="addTopic(currentUser.id)">
-    <legend>Add a new Topic</legend>
+    <legend>Add a new Channel</legend>
 
     <input type="hidden" name="user" ng-model="newTopic._author" value="{{currentUser.id}}">
 
-    <label for="title">Title:</label>
+    <label for="title">Channel Name:</label>
     <input type="text" name="title" ng-model="newTopic.title">
 
     <label for="description">Description:</label>
