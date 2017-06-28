@@ -9,29 +9,35 @@
   </div>
 </nav>
 
+<br>
+
 <div class="box" id="search-bar">
   <input type="search" name="search" ng-model="filter_channels">
   <input type="button" class="button" value="Search" ng-click="search()">
-</div>
 
-<table>
+  <br>
+
+  <table>
   <tr>
-    <th>Category</th>
-    <th>Topic</th>
-    <th>Username</th>
+    <th>Channel Name</th>
+    <th> Category </th>
+    <th> Creator </th>
     <th>Posts</th>
   </tr>
   <tr ng-repeat="topic in topics | filter:filter_channels">
-    <td>{{topic._category.name}}</td>
     <td><a href="#!/topics/{{topic._id}}">{{topic.title}}</a></td>
+    <td>{{topic._category.name}}</td>
     <td><a href="#!/user/{{topic._user._id}}">{{topic._author.username}}</a></td>
     <td>{{topic.posts.length}}</td>
   </tr>
 </table>
+</div>
+
+<br>
 
 <div class="box">
   <form ng-submit="addTopic(currentUser.id)">
-    <legend>Add a new Topic</legend>
+    <legend>Add a new Channel</legend>
 
     <input type="hidden" name="user" ng-model="newTopic._author" value="{{currentUser.id}}">
 

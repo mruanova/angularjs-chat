@@ -67,6 +67,8 @@ img{
   width: 210px;
   margin-top: 5px;
   margin-left: 5px;
+  color: #4169e1;
+
 }
 input{
   width: 245px;
@@ -105,4 +107,8 @@ table{
 a {
   color: #4169e1;
 
+}
+span {
+  color: #c39527;
+  
 }
