@@ -3,23 +3,20 @@ app.controller("usersController", function ($scope, $location, userFactory, $coo
   $scope.errors = {};
   var updateCookies = function (redirect = null) {
     if (userFactory.currentUser) {
-      // console.log()
       $cookies.put('currentUserId', userFactory.currentUser.id);
       $cookies.put('currentUserUsername', userFactory.currentUser.username);
+      $cookies.put('currentUserEmail', userFactory.currentUser.email);
       $scope.currentUser = {};
       $scope.currentUser.id = $cookies.get('currentUserId');
       $scope.currentUser.username = $cookies.get('currentUserUsername');
+      $scope.currentUser.email = $cookies.get('currentUserEmail');
     } else {
       console.log("No user found in the factory, clearing cookies");
       $scope.currentUser = null;
       $cookies.remove('currentUserId');
       $cookies.remove('currentUserUsername');
-      // $cookies.put('currentUserId', userFactory.currentUser.id);
-      // $cookies.put('currentUserUsername', userFactory.currentUser.username)
-      // $scope.currentUser = {}
-      // $scope.currentUser.id = $cookies.get('currentUserId')
-      // $scope.currentUser.username = $cookies.get('currentUserUsername')
-      // userFactory.currentUser = $scope.currentUser
+      $cookies.remove('currentUserEmail');
+      
     }
     if (redirect) {
       $location.url(redirect);
@@ -28,28 +25,7 @@ app.controller("usersController", function ($scope, $location, userFactory, $coo
 
   var errorCatcher = function (errors) {
     console.log("Caught errors:", errors);
-    // if (errors.error.email){
-    //   $scope.errors.emailTaken = errors.error.email.message
-    // }
-    // $scope.errors.emailTaken = null;
-    // // console.log("Email isn't taken...")
-    // if (errors.error){
-    //   if (errors.error.email){
-    //     $scope.errors.email = errors.errors.email.message
-    //   }
-    //   if (errors.errors.first_name){
-    //     $scope.errors.first_name = errors.errors.first_name.message
-    //   }
-    //   if (errors.errors.last_name){
-    //     $scope.errors.last_name = errors.errors.last_name.message
-    //   }
-    //   if (errors.errors.password){
-    //     $scope.errors.password = errors.errors.password.message
-    //   }
-    //   if (errors.errors.birthday){
-    //     $scope.errors.birthday = errors.errors.birthday.message
-    //   }
-    // }
+   
   };
 
   if ($location.url() == '/register') {

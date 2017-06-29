@@ -8,9 +8,10 @@ app.factory("userFactory", function ($http, $cookies) {
       console.log("Checking cookies")
       console.log($cookies.get('currentUserId'))
       console.log($cookies.get('currentUserUsername'))
+      console.log($cookies.get('currentUserEmail'))
       if ($cookies.get('currentUserUsername')){
         console.log("Found cookie")
-        factory.currentUser = {id:$cookies.get('currentUserId'), username: $cookies.get('currentUserUsername')}
+        factory.currentUser = {id:$cookies.get('currentUserId'), username: $cookies.get('currentUserUsername'), email: $cookies.get('currentUserEmail')}
       }
     }
 

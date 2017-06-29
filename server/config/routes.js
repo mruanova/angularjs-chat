@@ -2,7 +2,7 @@ var usersController = require('../controllers/usersController.js');
 var categoriesController = require('../controllers/categoriesController.js');
 var topicsController = require('../controllers/topicsController.js');
 var postsController = require('../controllers/postsController.js');
-var commentsController = require('../controllers/commentsController.js');
+
 
 module.exports = function (app) {
     // login
@@ -29,7 +29,6 @@ module.exports = function (app) {
 
     // create
     app.post("/api/topics/:id/posts", postsController.create);
-    // create
-    app.post("/api/comments", commentsController.create);
+    
 
 }
