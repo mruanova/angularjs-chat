@@ -29,7 +29,7 @@ module.exports = {
                     var promise = topic.save();
                     promise.then(function (topic) {
                         console.log("Saved topic", topic)
-                        user.topics.push(topic);
+                        user.topics.push(topic);//todo
                         var promise = user.save();
                         promise.then(function (user) {
                             console.log("Saved user topics", topic)

@@ -29,6 +29,7 @@
   font-family: 'Bungee', cursive;
   margin: 0;
   padding: 0;
+  color:#413040;
 }
 body{
   text-align: center;
@@ -65,10 +66,9 @@ body{
   margin-top: 5px;
   margin-left: 5px;
   color: #413040;
-
 }
 input{
-  width: 100%;
+  width: 95%;
 }
 label{
   width: 100%;
@@ -96,14 +96,12 @@ textarea{
   width: 100%;
   background-color: #413040;
   color: white;
-
 }
 navbar-header{
   float:left;
 }
 a {
   color: #4169e1;
-
 }
 .container-fluid {
   width:100%;

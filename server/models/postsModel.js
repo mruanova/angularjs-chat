@@ -26,10 +26,6 @@ var postsSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "Topics",
         required: true
-    },
-    comments: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Comments"
-    }]
+    }
 }, { timestamps: true });
 mongoose.model('Posts', postsSchema);

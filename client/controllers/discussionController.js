@@ -1,4 +1,4 @@
-app.controller("discussionController", function ($scope, $location, userFactory, discussionFactory, commentFactory, $cookies, $routeParams) {
+app.controller("discussionController", function ($scope, $location, userFactory, discussionFactory, $cookies, $routeParams) {
   $scope.user = {};
   var checkCurrentUser = function () {
     if (!userFactory.currentUser) {

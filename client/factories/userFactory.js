@@ -1,7 +1,5 @@
 app.factory("userFactory", function ($http, $cookies) {
-    console.log("Entered user factory");
     var factory = {};
-
     factory.currentUser = null;
 
     var checkCookies = function(){
@@ -62,12 +60,8 @@ app.factory("userFactory", function ($http, $cookies) {
     };
 
     factory.show = function(userId, setUser, catchErrors=null){
-      console.log("user.factory.show");
-      $http.get('/api/users/' + userId, function(response){
-        console.log("user.factory.show.response");
-        console.log(response);
+      $http.get('/api/users/' + userId).then(function(response){
         if (response.data.user){
-          console.log("Got user: ", response.data.user);
           setUser(response.data.user);
         } else {
           console.log("Something went wrong during user retrieval");

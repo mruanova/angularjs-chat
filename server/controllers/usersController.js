@@ -60,10 +60,11 @@ module.exports = {
         });
     },
     show: function (request, response) {
-        var promise = usersModel.findOne({ _id: request.params.id });
+        var promise = usersModel.findOne({ _id: request.params.id })
+            .populate("topics");
         promise.then(function (user) {
             console.log("USER.show.SUCCESS");
-            response.json(user);
+            response.json({ user: user });
         }).catch(function (err) {
             console.log("USER.show.ERROR", err);
             response.json(err);

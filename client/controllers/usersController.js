@@ -3,7 +3,6 @@ app.controller("usersController", function ($scope, $location, userFactory, $coo
   $scope.errors = {};
   var updateCookies = function (redirect = null) {
     if (userFactory.currentUser) {
-      console.log("updateCookies");
       $cookies.put('currentUserId', userFactory.currentUser.id);
       $cookies.put('currentUserUsername', userFactory.currentUser.username);
       $cookies.put('currentUserEmail', userFactory.currentUser.email);
@@ -11,7 +10,6 @@ app.controller("usersController", function ($scope, $location, userFactory, $coo
       $scope.currentUser.id = $cookies.get('currentUserId');
       $scope.currentUser.username = $cookies.get('currentUserUsername');
       $scope.currentUser.email = $cookies.get('currentUserEmail');
-      $scope.user = userFactory.currentUser;
     } else {
       console.log("No user found in the factory, clearing cookies");
       $scope.currentUser = null;
@@ -42,7 +40,6 @@ app.controller("usersController", function ($scope, $location, userFactory, $coo
   }
 
   if ($location.url() == '/login') {
-    // updateCookies();
     console.log("Viewing login page");
     $scope.login = function () {
       userFactory.login($scope.logindata, updateCookies, errorCatcher);
@@ -51,7 +48,12 @@ app.controller("usersController", function ($scope, $location, userFactory, $coo
   }
 
   if ($location.url().match('^/users/')) {
-    userFactory.show($scope.user.id, updateCookies, errorCatcher);
-    console.log("Viewing user show page");
+    userFactory.show($scope.user.id, setUser, errorCatcher);
+    console.log("$scope.user", $scope.user);
   }
+  
+  function setUser(user) {
+      $scope.user = user;
+      updateCookies();
+  };
 });
