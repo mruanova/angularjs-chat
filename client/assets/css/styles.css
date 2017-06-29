@@ -104,7 +104,7 @@ span {
   text-align: center;
 }
 #allposts {
-  overflow: scroll;
+  overflow: hidden;
   background-color: black;
   color: white;
   font-size: 0.75em;
