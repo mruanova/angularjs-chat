@@ -30,7 +30,7 @@
 </div>
 <div class="box">
   <form ng-submit="addTopic(currentUser.id)">
-    <legend class="welcome">Add a new Channel</legend>
+    <label for="" class="welcome">Add a new Channel</label>
     <input type="hidden" name="user" ng-model="newTopic._author" value="{{currentUser.id}}">
     <label for="title">Channel Name:</label>
     <input id="textbackground" type="text" name="title" ng-model="newTopic.title">
