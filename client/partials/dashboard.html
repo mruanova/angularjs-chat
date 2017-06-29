@@ -29,15 +29,15 @@
 <div class="box">
   <form ng-submit="addTopic(currentUser.id)">
     <label for="" class="welcome">Add a new Channel</label>
+    <label for="category">Category:</label>
+    <select id="textbackground" name="category" ng-model="newTopic._category" class="control">
+      <option ng-repeat="category in categories" value="{{category._id}}">{{category.name}}</option>
+    </select>
     <input type="hidden" name="user" ng-model="newTopic._author" value="{{currentUser.id}}">
     <label for="title">Channel Name:</label>
     <input id="textbackground" type="text" name="title" ng-model="newTopic.title">
     <label for="description">Description:</label>
     <textarea name="description" class="text-box" ng-model="newTopic.description"></textarea>
-    <label for="category">Category:</label>
-    <select id="textbackground" name="category" ng-model="newTopic._category" class="control">
-      <option ng-repeat="category in categories" value="{{category._id}}">{{category.name}}</option>
-    </select>
     <label for="button"></label>
     <input type="submit" class="button" value="Submit">
   </form>

@@ -31,7 +31,7 @@ app.controller("discussionController", function ($scope, $location, userFactory,
       $scope.newTopic._author = userId
       console.log("NEW TOPIC: ", $scope.newTopic)
       discussionFactory.addTopic($scope.newTopic, setTopics)
-      $scope.newTopic=[];
+      $scope.newTopic={};
     }
   }
   if ($location.url().match('^/topics/')) {
