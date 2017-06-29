@@ -23,8 +23,7 @@ app.controller("discussionController", function ($scope, $location, userFactory,
       $scope.topics = topics
     }
     var setCategories = function (categories) {
-      $scope.categories = categories
-      console.log(categories)
+      $scope.categories = categories;
     }
     discussionFactory.getTopics(setTopics)
     discussionFactory.getCategories(setCategories)

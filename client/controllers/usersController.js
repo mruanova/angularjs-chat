@@ -1,22 +1,19 @@
 app.controller("usersController", function ($scope, $location, userFactory, $cookies) {
   $scope.user = userFactory.currentUser;
   $scope.errors = {};
-  console.log("usersController");
-  console.log($scope.user);
-
   var updateCookies = function (redirect = null) {
     if (userFactory.currentUser) {
       // console.log()
       $cookies.put('currentUserId', userFactory.currentUser.id);
-      $cookies.put('currentUserUsername', userFactory.currentUser.username)
-      $scope.currentUser = {}
-      $scope.currentUser.id = $cookies.get('currentUserId')
-      $scope.currentUser.username = $cookies.get('currentUserUsername')
+      $cookies.put('currentUserUsername', userFactory.currentUser.username);
+      $scope.currentUser = {};
+      $scope.currentUser.id = $cookies.get('currentUserId');
+      $scope.currentUser.username = $cookies.get('currentUserUsername');
     } else {
       console.log("No user found in the factory, clearing cookies");
       $scope.currentUser = null;
       $cookies.remove('currentUserId');
-      $cookies.remove('currentUserUsername')
+      $cookies.remove('currentUserUsername');
       // $cookies.put('currentUserId', userFactory.currentUser.id);
       // $cookies.put('currentUserUsername', userFactory.currentUser.username)
       // $scope.currentUser = {}
@@ -25,13 +22,12 @@ app.controller("usersController", function ($scope, $location, userFactory, $coo
       // userFactory.currentUser = $scope.currentUser
     }
     if (redirect) {
-      $location.url(redirect)
+      $location.url(redirect);
     }
-
-  }
+  };
 
   var errorCatcher = function (errors) {
-    console.log("Caught errors:", errors)
+    console.log("Caught errors:", errors);
     // if (errors.error.email){
     //   $scope.errors.emailTaken = errors.error.email.message
     // }
@@ -54,10 +50,10 @@ app.controller("usersController", function ($scope, $location, userFactory, $coo
     //     $scope.errors.birthday = errors.errors.birthday.message
     //   }
     // }
-  }
+  };
 
   if ($location.url() == '/register') {
-    console.log("Viewing register page")
+    console.log("Viewing register page");
     $scope.register = function () {
       if ($scope.registerUser.password == $scope.confirm) {
         userFactory.register($scope.registerUser, updateCookies, errorCatcher)
@@ -71,15 +67,15 @@ app.controller("usersController", function ($scope, $location, userFactory, $coo
 
   if ($location.url() == '/login') {
     // updateCookies();
-    console.log("Viewing login page")
+    console.log("Viewing login page");
     $scope.login = function () {
       userFactory.login($scope.logindata, updateCookies, errorCatcher)
       $scope.errors = {};
-    }
+    };
   }
 
   if ($location.url().match('^/users/')) {
-    console.log("Viewing user show page")
+    console.log("Viewing user show page");
     //TODO need to flesh this out later
   }
 
