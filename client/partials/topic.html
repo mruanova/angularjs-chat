@@ -11,7 +11,6 @@
     </div>
   </div>
 </nav>
-
 <div class="box">
   <h5>
     <img src="./images/8bit.jpg" alt="avatar" class="small circle">
@@ -20,30 +19,22 @@
   <h5>
     <span class="channelname">#{{topic.title}}</span>
   </h5>
-  <br>
-  <p>Description: {{topic.description}}</p>
-  <br>
+  {{topic.description}}
   <div id="allposts">
     <div class="" ng-repeat="post in topic.posts">
-      <p>
-        <img src="./images/8bit.jpg" alt="avatar" class="small circle">
-        <a href="#!/users/{{topic._author._id}}">{{post._author.username}}:</a> Said..
-        <span class="posttext">  "{{post.postText}}" </span> |
-        <span class="time"> {{post.createdAt|date: "hh:mm a"}} </span>
-      </p>
-      <!--post._author works-->
-      <br>
+        <img src="./images/8bit.jpg" alt="avatar" class="smaller circle">
+        <a href="#!/users/{{topic._author._id}}">
+          @{{post._author.username}}:
+          <span class="time">{{post.createdAt|date: "M/dd HH:mm"}}</span>
+        </a>
+        <span class="posttext">"{{post.postText}}"</span>
     </div>
   </div>
   <div class="">
     <form enctype="multipart/form-data" ng-submit="addPost(currentUser.id, topic._id)">
       <label>Post here...</label>
-      <br>
       <textarea name="name" class="text-box" ng-model="newPost.postText"></textarea>
-      <br>
       <input type="submit" class="button" name="" value="Post">
     </form>
-    <br>
   </div>
-
 </div>
