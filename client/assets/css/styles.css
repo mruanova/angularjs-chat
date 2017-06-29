@@ -1,10 +1,10 @@
 /* Small sized screens */
 @media (max-width: 480px) {
   .box{
-    width: 275px;
+    width: 300px;
   }
   .control{
-    width: 250px;
+    width: 275px;
   }
 }
 /* Medium sized screens */
@@ -43,10 +43,6 @@ body{
   margin-bottom: 5px;
   border-radius: 10px;
 }
-img{
-  height: 100px;
-  width: 100px;
-}
 .small{
   height: 16px;
   width: 16px;
@@ -62,13 +58,13 @@ img{
   width: 100%;
   margin-top: 5px;
   margin-left: 5px;
-  color: #4169e1;
+  color: #413040;
 }
 .signout{
   width: 100px;
   margin-top: 5px;
   margin-left: 5px;
-  color: #4169e1;
+  color: #413040;
 
 }
 input{
@@ -77,7 +73,7 @@ input{
 label{
   width: 100%;
   vertical-align: top;
-  color: #c39527;
+  color: #4d817d;
 }
 .navbar-header{
   float: left;
@@ -98,8 +94,8 @@ select{
 }
 textarea{
   width: 100%;
-  background-color: black;
-  color: green;
+  background-color: #413040;
+  color: white;
 
 }
 navbar-header{
@@ -109,10 +105,6 @@ a {
   color: #4169e1;
 
 }
-span {
-  color: #c39527;
-  
-}
 .container-fluid {
   width:100%;
   display: inline-block;
@@ -120,27 +112,45 @@ span {
 }
 #allposts {
   overflow: hidden;
-  background-color: black;
+  background-color: #413040;
   color: white;
   font-size: 0.75em;
   padding: 5px;
-}
-.posttext {
-  color: green;
-}
-.time {
-  color: red;
-}
-.channelname {
-  color: #c39527; 
 }
 table{
   width:100%;
 }
 #textbackground {
-  background-color: black;
-  color: green;
+  background-color: #413040;
+  color: white;
 }
 p{
   margin:0 !important;
+}
+.purple{
+  background-color: #413040 !important;
+}
+.welcome{
+  color:#413040;
+}
+.white{
+  color:white !important;
+}
+.violet{
+  color:#c0b6bf;
+}
+.medium{
+  height: 32px;
+  width: 32px;
+}
+.logo{
+  height: 50px;
+  width: 50px;
+}
+.tile{
+  display: inline-block;
+}
+img{
+  vertical-align: top !important;
+  margin-bottom: 1px;
 }

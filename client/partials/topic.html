@@ -5,29 +5,34 @@
     </div>
     <div id="navbar" class="navbar-collapse collapse in" aria-expanded="true">
       <ul class="nav navbar-nav navbar-right">
-        <span>Welcome <span ng-bind="currentUser.username"></span>!
+        <span class="welcome">Welcome <span ng-bind="currentUser.username"></span>!
         <input class="signout" type="button" value="Sign Out" ng-click="logout()">
       </ul>
     </div>
   </div>
 </nav>
 <div class="box">
+  <!--
   <h5>
     <img src="./images/8bit.jpg" alt="avatar" class="small circle">
     <a href="#!/users/{{topic._author._id}}">{{topic._author.username}}</a> created a new channel:
   </h5>
-  <h5>
-    <span class="channelname">#{{topic.title}}</span>
-  </h5>
-  {{topic.description}}
+  -->
+  <a href="#!/dashboard">channels</a>
+  <legend>#{{topic.title}}</legend>
+  <label for="">{{topic.description}}</label>
   <div id="allposts">
     <div class="" ng-repeat="post in topic.posts">
-        <img src="./images/8bit.jpg" alt="avatar" class="smaller circle">
-        <a href="#!/users/{{topic._author._id}}">
-          @{{post._author.username}}:
-          <span class="time">{{post.createdAt|date: "M/dd HH:mm"}}</span>
+        <a class="white" href="#!/users/{{topic._author._id}}">
+          <img src="./images/8bit.jpg" alt="avatar" class="medium circle">
         </a>
-        <span class="posttext">"{{post.postText}}"</span>
+        <div class="tile">
+        <a class="white" href="#!/users/{{topic._author._id}}">
+          {{post.createdAt|date: "M/dd HH:mm"}} {{post._author.username}}
+        </a><br>
+        <span class="violet">"{{post.postText}}"</span>
+
+        </div>
     </div>
   </div>
   <div class="">
