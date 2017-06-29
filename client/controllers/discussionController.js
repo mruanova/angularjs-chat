@@ -31,6 +31,7 @@ app.controller("discussionController", function ($scope, $location, userFactory,
       $scope.newTopic._author = userId
       console.log("NEW TOPIC: ", $scope.newTopic)
       discussionFactory.addTopic($scope.newTopic, setTopics)
+      $scope.newTopic=[];
     }
   }
   if ($location.url().match('^/topics/')) {
@@ -43,6 +44,7 @@ app.controller("discussionController", function ($scope, $location, userFactory,
       console.log("controller.addPost");
       var newPost = { postText: $scope.newPost.postText, _author: userId, _topic: topicId };
       discussionFactory.addNewPost(topicId, newPost, setTopic);
+      $scope.newPost=[];
       
     }
   
