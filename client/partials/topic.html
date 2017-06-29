@@ -13,16 +13,23 @@
 </nav>
 
 <div class="box">
-  <h5><a href="#!/users/{{topic._author._id}}">{{topic._author.username}}</a> created a new channel:</h5>
-  <h5> <span class="channelname">#{{topic.title}} </span></h5>
+  <h5>
+    <img src="./images/8bit.jpg" alt="avatar" class="small circle">
+    <a href="#!/users/{{topic._author._id}}">{{topic._author.username}}</a> created a new channel:
+  </h5>
+  <h5>
+    <span class="channelname">#{{topic.title}}</span>
+  </h5>
   <br>
   <p>{{topic.description}}</p>
-
   <br>
   <div id="allposts">
     <div class="" ng-repeat="post in topic.posts">
       <p>
-        <a href="#!/users/{{topic._author._id}}">{{post._author.username}}:</a> Said..<span class="posttext">  {{post.postText}} </span>        |<span class="time"> {{post.createdAt|date: "hh:mm a"}} </span>
+        <img src="./images/8bit.jpg" alt="avatar" class="small circle">
+        <a href="#!/users/{{topic._author._id}}">{{post._author.username}}:</a> Said..
+        <span class="posttext">  {{post.postText}} </span> |
+        <span class="time"> {{post.createdAt|date: "hh:mm a"}} </span>
       </p>
       <!--post._author works-->
       <br>

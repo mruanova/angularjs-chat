@@ -16,10 +16,7 @@
 
 <div class="box">
   <input id="search-bar" type="search" name="search" ng-model="filter_channels" placeholder="Search Channels">
-
-
   <br>
-
   <table>
     <tr>
       <th>Channel </th>
@@ -30,7 +27,7 @@
     <tr ng-repeat="topic in topics | filter:filter_channels">
       <td><a href="#!/topics/{{topic._id}}">{{topic.title}}</a></td>
       <td>
-        <img src="./images/8bit.jpg" alt="avatar" class="small">
+        <img src="./images/8bit.jpg" alt="avatar" class="small circle">
         <a href="#!/users/{{topic._author._id}}">{{topic._author.username}}</a>
       </td>
       <!--<td>{{topic.posts.length}}</td>-->

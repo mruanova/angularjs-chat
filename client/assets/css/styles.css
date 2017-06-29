@@ -42,6 +42,10 @@ img{
   height: 16px;
   width: 16px;
 }
+.circle{
+  border: 1px solid white;
+  border-radius: 25px;
+}
 .button{
   width: 250px;
   margin-top: 5px;
@@ -108,6 +112,7 @@ span {
   background-color: black;
   color: white;
   font-size: 0.75em;
+  padding: 1px;
 }
 .posttext {
   color: green;
