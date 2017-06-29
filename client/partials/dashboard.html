@@ -62,7 +62,7 @@
 
     <label for="category">Category:</label>
     <br>
-    <select id="textbackground" name="category" ng-model="newTopic._category">
+    <select id="textbackground" name="category" ng-model="newTopic._category" class="control">
       <option ng-repeat="category in categories" value="{{category._id}}">{{category.name}}</option>
     </select>
 
