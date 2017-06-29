@@ -72,9 +72,9 @@ module.exports = {
     },
     show: function (request, response) {
         console.log("topicsController.show");
-        var promise = topicsModel.findOne({ _id: request.params.id }).populate("_author posts posts._author posts.comments posts.comments._author");
+        var promise = topicsModel.findOne({ _id: request.params.id }).populate("_author posts").populate({ path: 'posts', populate: { path: '_author', select: 'username' } });
         promise.then(function (topic) {
-            console.log("Found topic");
+            console.log("found topic");
             response.json({ topic: topic });
         }).catch(function (err) {
             console.log("topic.show.ERROR", err);
