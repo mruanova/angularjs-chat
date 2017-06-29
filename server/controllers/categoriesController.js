@@ -12,9 +12,6 @@ var topicsModel = mongoose.model('Topics');
 //mongoose.model('Posts', postsSchema);
 var postsModel = mongoose.model('Posts');
 
-//mongoose.model('Comments', commentsSchema);
-var commentsModel = mongoose.model('Comments');
-
 module.exports = {
     index: function (request, response) {
         var promise = categoriesModel.find({});

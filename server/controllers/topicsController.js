@@ -12,44 +12,20 @@ var topicsModel = mongoose.model('Topics');
 //mongoose.model('Posts', postsSchema);
 var postsModel = mongoose.model('Posts');
 
-//mongoose.model('Comments', commentsSchema);
-var commentsModel = mongoose.model('Comments');
-
 //var topicsController = {
 module.exports = {
     index: function (request, response) {
         var promise = topicsModel.find({}).populate("_author _category");
         promise.then(function (topics) {
-            if (topics) {
-                console.log("topics.find", topics.length);
-                var promise = postsModel.find({}).populate("_author _topic");
-                promise.then(function (posts) {
-                    if (posts) {
-                        console.log("post.find", posts.length);
-                        var promise = commentsModel.find({}).populate("_author _post");
-                        promise.then(function (comments) {
-                            if (comments) {
-                                console.log("comments.find", comments.length);
-                                response.json({ topics: topics, posts: posts, comments: comments });
-                            } else {
-                                console.log("comments not found");
-                                response.json(err);
-                            }
-                        }).catch(function (err) {
-                            console.log("comments.find.ERROR", err);
-                            response.json(err);
-                        });
-                    } else {
-                        console.log("posts not found");
-                    }
-                }).catch(function (err) {
-                    console.log("posts.find.ERROR", err);
-                    response.json(err);
-                });
-            } else {
-                console.log("topics not found");
+            console.log("topics.find", topics.length);
+            var promise = postsModel.find({}).populate("_author _topic");
+            promise.then(function (posts) {
+                console.log("post.find", posts.length);
+                response.json({ topics: topics, posts: posts });
+            }).catch(function (err) {
+                console.log("posts.find.ERROR", err);
                 response.json(err);
-            }
+            });
         }).catch(function (err) {
             console.log("topics.find.ERROR", err);
             response.json(err);
@@ -72,38 +48,15 @@ module.exports = {
     },
     show: function (request, response) {
         console.log("topicsController.show");
-        var promise = topicsModel.findOne({ _id: request.params.id }).populate("_author posts").populate({ path: 'posts', populate: { path: '_author', select: 'username' } });
+        var promise = topicsModel.findOne({ _id: request.params.id })
+            .populate("_author posts")
+            .populate({ path: 'posts', populate: { path: '_author', select: 'username' } });
         promise.then(function (topic) {
             console.log("found topic");
             response.json({ topic: topic });
         }).catch(function (err) {
             console.log("topic.show.ERROR", err);
             response.json(err);
-        })
-    },
-    Like: function (request, response) {
-        Post.findOne({ _id: request.body.post }, function (err, post) { // creates likes
-            if (err) {
-                response.json({ err: err })
-            }
-            else {
-                post.like.push(request.body.user);
-                post.save((err) => { console.log(err); })
-                response.json({ post: post })
-            }
-        })
-    },
-    Dislike: function (request, response) { //creates dislikes
-        Post.findOne({ _id: request.body.post }, function (err, post) {
-            console.log(post)
-            if (err) {
-                response.json({ err: err })
-            }
-            else {
-                post.dislike.push(request.body.user);
-                post.save((err) => { console.log(err); })
-                response.json({ post: post })
-            }
         })
     }
 };
