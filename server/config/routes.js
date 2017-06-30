@@ -13,7 +13,7 @@ module.exports = function (app) {
 
     // index / find / search / retrieve all / show all
     app.get("/api/categories", categoriesController.index);
-    // create
+    // Category create
     app.post("/api/categories", categoriesController.create);
 
     // retrieve one / show one / find one
@@ -23,6 +23,6 @@ module.exports = function (app) {
     // create topic
     app.post("/api/topics", topicsController.create);
 
-    // create
+    // Post create
     app.post("/api/topics/:id/posts", postsController.create);
 }
