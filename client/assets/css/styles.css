@@ -151,3 +151,15 @@ img{
   vertical-align: top !important;
   margin-bottom: 1px;
 }
+.status {
+  color:lime;
+}
+#date {
+  color: tomato;
+}
+#list {
+  color: #4d817d;
+}
+.labels {
+  color: gray;
+}
