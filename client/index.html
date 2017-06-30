@@ -7,7 +7,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Quack</title>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script type="text/javascript" src="/socket.io/socket.io.js"></script>
     <!-- DEPENDENCIES -->
     <script src="angular/angular.js"></script>
     <script src="angular-route/angular-route.js"></script>
@@ -29,21 +28,6 @@
     <link href="https://fonts.googleapis.com/css?family=Bungee" rel="stylesheet">
     <link rel="shortcut icon" type="image/png" href="favicon.ico">
 </head>
-<script>
-    $(document).ready(function () {
-        // this triggers the connection event in our server!
-        var socket = io.connect();
-        $("#new_channel").submit(function () {
-            socket.emit("", { message: $("#channel").val(), user: current_user })
-            return false;
-        })
-        $("#new_post").submit(function () {
-            socket.emit("", { message: $("#post").val(), user: current_user })
-            return false;
-        })
-    })
-
-</script>
 
 <body>
     <div ng-view="">
