@@ -1,1 +1,1 @@
-﻿Mauricio Ruanova-Hurtado and MIKE BRAUN.MEAN and Mike Brown(MongoDB ExpressJS AngularJS NodeJS) discussion board.
+﻿Mauricio Ruanova-Hurtado, Mike Braun, and Mike Brown. MEAN (MongoDB ExpressJS AngularJS NodeJS) chat app.
