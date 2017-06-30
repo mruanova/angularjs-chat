@@ -18,7 +18,18 @@
     <img src="./images/8bit.jpg" alt="avatar">
     <label for="" ng-bind="user.username"></label>
     <label for="" ng-bind="user.email"></label>
-    <ul>
+    <label for="">Status</label>
+    <p>Online</p>
+    <label for="">What I do</label>
+    <p>Student</p>
+    <label for="">Time and Date</label>
+    <p id="date"></p>
+    <script>
+        document.getElementById("date").innerHTML = Date();
+    </script>
+    <label for="">Phone</label>
+    <p>555-555-5555</p>
+    <ul style="list-style: none">
         <li ng-repeat="topic in user.topics track by $index">
             {{ topic.title }}
         </li>
