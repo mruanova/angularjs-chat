@@ -16,7 +16,7 @@ mongo
 
 ## show databases
 
-show ~~dbs~~
+show dbs
 
 ## install
 
