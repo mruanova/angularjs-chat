@@ -4,7 +4,7 @@ var path = require('path');
 
 mongoose.Promise = global.Promise;
 
-mongoose.connect('mongodb://localhost/discussdb', function (err) {
+mongoose.connect('mongodb://localhost/angularjs-chat', function (err) {
     if (err) {
         console.log(err);
     } else {

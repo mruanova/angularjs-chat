@@ -1,7 +1,7 @@
 {
-  "name": "discuss",
+  "name": "angularjs-chat",
   "version": "1.0.0",
-  "description": "Mauricio Ruanova-Hurtado and MIKE BRAUN.MEAN (MongoDB ExpressJS AngularJS NodeJS) discussion board.",
+  "description": "Mauricio Ruanova-Hurtado MEAN chat.",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -9,15 +9,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mruanova/discuss.git"
+    "url": "git+https://github.com/mruanova/angularjs-chat.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/mruanova/discuss/issues"
+    "url": "https://github.com/mruanova/angularjs-chat/issues"
   },
-  "homepage": "https://github.com/mruanova/discuss#readme",
+  "homepage": "https://github.com/mruanova/angularjs-chat#readme",
   "dependencies": {
     "angular": "^1.6.4",
     "angular-cookies": "^1.6.4",
